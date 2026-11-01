@@ -43,6 +43,9 @@ Ditambahkan setelah kode awal tersedia.
 ├── requirements.txt
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
+│   ├── workflows/
+│   │   └── ci.yml
+│   ├── dependabot.yml
 │   └── pull_request_template.md
 ├── data/
 │   ├── README.md
@@ -74,5 +77,17 @@ Gunakan **Issues → New issue** untuk memilih form laporan masalah atau usulan
 perubahan. Issue kosong tetap tersedia untuk catatan atau tugas lainnya.
 
 Saat membuat pull request, isi template ringkasan perubahan dan pemeriksaan.
-Konfigurasi CI dan pembaruan dependensi rutin ditambahkan setelah kode serta
-library proyek ditetapkan.
+
+## Python, CI, dan Dependabot
+
+Proyek menggunakan Python. CI memakai Python 3.12 dan berjalan saat push ke
+`main`, saat pull request, atau secara manual dari tab **Actions**.
+
+Pemeriksaan awal mencakup pemasangan `requirements.txt`, kompatibilitas
+dependensi, dan sintaks berkas `.py` dalam `src/`. Saat ini belum ada library
+proyek atau berkas `.py`; CI memeriksa kesiapan dasar. Eksekusi notebook,
+pengujian pipeline, dan evaluasi model ditambahkan setelah kodenya tersedia.
+
+Dependabot memeriksa library Python di `requirements.txt` dan GitHub Actions
+setiap bulan. Pembaruan diajukan melalui pull request untuk diperiksa sebelum
+digabung. Pemeriksaan library mulai bermanfaat setelah dependensi ditambahkan.
