@@ -12,17 +12,19 @@
 
 ## Pembagian kontribusi
 
-Semua anggota ikut bekerja setiap minggu. Pembagian awal berikut dapat
-disesuaikan berdasarkan beban dan tingkat kesulitan, tanpa PIC khusus.
+Setiap minggu dikerjakan bertiga sesuai peran, tanpa PIC khusus. Week 14
+tetap hanya dilakukan jika diminta dosen. Rincian ada di
+[pembagian tugas per minggu](collaboration-plan.md#pembagian-tugas-per-minggu).
 
 | Anggota | Kontribusi awal |
 |---|---|
-| Bambang Herlambang | Tujuan/BOD, pembersihan data, algoritma A, pendahuluan dan penjelasan data |
-| Benedictus Erlangga | Karakteristik data, pembagian/transformasi data, algoritma B, metode |
-| Robertus Geraldyn Alexandro Gabeler | Kajian evaluasi, baseline, rekap metrik/grafik, analisis kesalahan dan hasil |
+| Bambang Herlambang | Tujuan/BOD week 10; preprocessing week 11-12; bagian tujuan/preprocessing laporan week 13; pendahuluan artikel week 15; slide sesuai bagian week 16 |
+| Benedictus Erlangga | Pencarian/karakteristik dataset dan rancangan evaluasi week 10; baseline, evaluasi kedua algoritma, grafik dan analisis kesalahan week 11-12; bagian data/evaluasi/hasil laporan week 13 dan artikel week 15; slide sesuai bagian week 16 |
+| Robertus Geraldyn Alexandro Gabeler | Kajian/rencana algoritma week 10; implementasi A/B, pengaturan parameter dan pencatatan konfigurasi week 11-12; bagian metode/model laporan week 13 dan artikel week 15; slide sesuai bagian week 16 |
 
 Semua menyumbang bahan pembahasan, kesimpulan, referensi, pemeriksaan hasil,
 serta presentasi. Jika satu paket lebih berat, bagi subtugas yang tersisa.
+Pencarian dataset dilakukan Benedictus saja; pemilihan akhirnya disepakati bersama.
 
 ## Kalender kelas
 

@@ -21,6 +21,17 @@ penjelasan dosen; dataset, metode dan target metrik belum ditentukan.
 
 ## Urutan internal
 
+Setiap minggu dikerjakan bertiga sesuai peran. Pada week 10, Benedictus
+mencari dataset dan menyusun rancangan evaluasi, Bambang menyiapkan tujuan/BOD,
+dan Robertus Geraldyn mengkaji serta merencanakan algoritma A/B. Dataset akhir
+dipilih bersama. Pada week 11-12, Bambang menangani preprocessing, Benedictus
+baseline dan evaluasi kedua algoritma, serta Robertus Geraldyn implementasi
+kedua algoritma beserta parameter dan konfigurasi percobaannya.
+Coding week 11-12, laporan week 13, artikel week 15, dan penyusunan presentasi
+week 16 dibagi bertiga. Week 14 tetap hanya dilakukan jika diminta dosen;
+subtugas tambahannya dibagi sesuai peran dan hasilnya diperiksa bersama.
+Bahan laporan/slide disiapkan saat pekerjaan asalnya dilakukan.
+
 - Gunakan Rabu sebelum kelas sebagai Hari 1 dan Selasa sebagai Hari 7 untuk
   rencana pengerjaan; waktu internal disepakati kelompok.
 - Awal minggu: tentukan hasil, pembagian tugas, dan bahan yang ditunggu.
@@ -36,5 +47,7 @@ yang jelas. Evaluasi final diselesaikan sebelum angka artikel dikunci.
 ## Dokumen terkait
 
 - [Rencana kolaborasi](collaboration-plan.md): pembagian dan bahan tiap anggota.
+- [Pembagian tugas per minggu](collaboration-plan.md#pembagian-tugas-per-minggu):
+  rincian Bambang, Benedictus, dan Robertus pada week 10-16.
 - [Status implementasi](implementation-status.md): capaian dan batas pemeriksaan.
 - [Checklist penyerahan](publication-checklist.md): pemeriksaan keluaran akhir.
