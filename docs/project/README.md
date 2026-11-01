@@ -1,5 +1,15 @@
 # Panduan kerja kelompok
 
+## Isi folder
+
+| Dokumen | Kegunaan |
+|---|---|
+| [collaboration-plan.md](collaboration-plan.md) | Pembagian tiga anggota, ketergantungan dan review |
+| [timeline.md](timeline.md) | Tahap week 10-16 dengan kalender Selasa |
+| [publication-checklist.md](publication-checklist.md) | Pemeriksaan penyerahan dan publikasi jika diperlukan |
+| [implementation-status.md](implementation-status.md) | Progres, bukti dan batas implementasi |
+| [review-setup.md](review-setup.md) | Pemeriksaan kelengkapan fondasi repo |
+
 ## Pembagian kontribusi
 
 Semua anggota ikut bekerja setiap minggu. Pembagian awal berikut dapat
