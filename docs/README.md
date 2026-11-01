@@ -1,5 +1,6 @@
 # Dokumen proyek
 
+- `project/`: kalender kelas, pembagian kontribusi, dan review kelengkapan setup.
 - `week-10/`: dataset, karakteristik, BOD, dan rancangan metode.
 - `laporan/`: laporan pertama dan lampiran relevan.
 - `artikel/`: artikel bahasa Indonesia dengan struktur IMRAD.

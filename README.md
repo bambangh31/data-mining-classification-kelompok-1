@@ -39,6 +39,11 @@ Ditambahkan setelah kode awal tersedia.
 ```text
 .
 ├── README.md
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── .editorconfig
+├── .gitattributes
+├── .python-version
 ├── .gitignore
 ├── requirements.txt
 ├── .github/
@@ -57,6 +62,7 @@ Ditambahkan setelah kode awal tersedia.
 │   ├── metrics/
 │   └── figures/
 └── docs/
+    ├── project/
     ├── week-10/
     ├── laporan/
     ├── artikel/
@@ -72,6 +78,14 @@ Data besar atau yang distribusinya dibatasi dapat disertakan melalui tautan
 dan petunjuk pengambilan.
 
 ## Kontribusi
+
+Ikuti [panduan kontribusi](CONTRIBUTING.md) untuk lingkungan Python, alur PR,
+pemeriksaan, dan pencatatan eksperimen. Penanganan kredensial dan data
+tercantum di [panduan keamanan](SECURITY.md).
+
+Kalender kelas dan pembagian kontribusi ada di
+[panduan kerja kelompok](docs/project/README.md). Hasil pemeriksaan
+kelengkapan setup ada di [review setup](docs/project/review-setup.md).
 
 Gunakan **Issues → New issue** untuk memilih form laporan masalah atau usulan
 perubahan. Issue kosong tetap tersedia untuk catatan atau tugas lainnya.
