@@ -41,6 +41,9 @@ Ditambahkan setelah kode awal tersedia.
 ├── README.md
 ├── .gitignore
 ├── requirements.txt
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   └── pull_request_template.md
 ├── data/
 │   ├── README.md
 │   ├── raw/
@@ -64,3 +67,12 @@ isi dengan library dan versi yang sudah digunakan dan diuji.
 Sumber dan petunjuk dataset ada di [data/README.md](data/README.md).
 Data besar atau yang distribusinya dibatasi dapat disertakan melalui tautan
 dan petunjuk pengambilan.
+
+## Kontribusi
+
+Gunakan **Issues → New issue** untuk memilih form laporan masalah atau usulan
+perubahan. Issue kosong tetap tersedia untuk catatan atau tugas lainnya.
+
+Saat membuat pull request, isi template ringkasan perubahan dan pemeriksaan.
+Konfigurasi CI dan pembaruan dependensi rutin ditambahkan setelah kode serta
+library proyek ditetapkan.
