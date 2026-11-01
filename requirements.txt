@@ -1,0 +1,2 @@
+# Tambahkan library beserta versi yang sudah digunakan dan diuji.
+# Belum ada dependensi karena kode dan algoritma belum ditetapkan.

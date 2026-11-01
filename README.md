@@ -33,3 +33,34 @@ Direncanakan membandingkan dua algoritma klasifikasi.
 ## Cara Menjalankan
 
 Ditambahkan setelah kode awal tersedia.
+
+## Struktur Repository
+
+```text
+.
+├── README.md
+├── .gitignore
+├── requirements.txt
+├── data/
+│   ├── README.md
+│   ├── raw/
+│   └── processed/
+├── notebooks/
+├── src/
+├── results/
+│   ├── metrics/
+│   └── figures/
+└── docs/
+    ├── week-10/
+    ├── laporan/
+    ├── artikel/
+    └── presentasi/
+```
+
+Setiap folder berisi README singkat. Notebook dan modul dibuat setelah
+dataset serta metode ditetapkan. `requirements.txt` belum memuat dependensi;
+isi dengan library dan versi yang sudah digunakan dan diuji.
+
+Sumber dan petunjuk dataset ada di [data/README.md](data/README.md).
+Data besar atau yang distribusinya dibatasi dapat disertakan melalui tautan
+dan petunjuk pengambilan.
