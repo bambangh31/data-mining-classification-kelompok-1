@@ -1,0 +1,21 @@
+{
+  "checked_on": "2026-11-03",
+  "kaggle_page": "https://www.kaggle.com/datasets/brandao/diabetes",
+  "kaggle_version": 1,
+  "kaggle_files": [
+    {
+      "name": "description.pdf",
+      "bytes": 1492915
+    },
+    {
+      "name": "diabetic_data.csv",
+      "bytes": 19159383
+    }
+  ],
+  "kaggle_csv_sha256": "0689e7ec031237dc63031b938805c48377748761a3b26acab621567afa24df97",
+  "local_uci_csv_sha256": "0689e7ec031237dc63031b938805c48377748761a3b26acab621567afa24df97",
+  "csv_identical_bytes": true,
+  "kaggle_license_label": "CC0: Public Domain",
+  "uci_license_label": "CC BY 4.0",
+  "conclusion": "Same CSV content; different supporting files and license metadata labels."
+}
