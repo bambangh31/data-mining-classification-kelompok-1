@@ -14,5 +14,5 @@
 *.jpg binary
 *.jpeg binary
 
-# Pertahankan byte sumber dataset (termasuk line ending) untuk verifikasi SHA-256
-data/raw/*.csv -text
+# Pertahankan byte sumber; jangan normalisasi atau lint whitespace data asli
+data/raw/*.csv -text -whitespace
