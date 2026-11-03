@@ -36,10 +36,11 @@ keamanan aplikasi contoh atau menyatakan analisis Data Mining telah selesai.
 
 ## Bagian yang menunggu pengerjaan proyek
 
-Dataset, kamus data aktual, algoritma, library beserta versinya, notebook,
-pengujian pipeline/model, hasil evaluasi, laporan, artikel, dan slide diisi
-ketika kegiatannya dilakukan. File kosong yang menyerupai hasil jadi tidak
-dibuat untuk menggantikan pekerjaan tersebut.
+Pembaruan 3 November 2026: dataset Diabetes, profil/kamus data, dependensi,
+notebook, preprocessing, baseline, dua model awal dan evaluasi validation
+telah tersedia lokal. Lihat [week 10](../week-10/README.md) dan
+[week 11](../week-11/README.md). Tuning/CV, evaluasi final, laporan week 13,
+artikel dan slide tetap menjadi pekerjaan tahap selanjutnya.
 
 ## Keselarasan dengan setup Web Mining
 

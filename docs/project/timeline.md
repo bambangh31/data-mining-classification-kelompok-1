@@ -17,7 +17,9 @@ Tanggal kelas tidak otomatis menjadi tenggat pengumpulan resmi.
 
 Pembagian fokus week 11 dan 12 adalah usulan operasional. Status pekerjaan
 mengikuti hasil nyata, bukan posisi minggu pada kalender. BOD mengikuti
-penjelasan dosen; dataset, metode dan target metrik belum ditentukan.
+penjelasan dosen. Dataset Diabetes telah diberikan pada 3 November 2026;
+preprocessing dan percobaan Logistic Regression/Random Forest telah dijalankan
+lokal. Average precision menjadi metrik utama percobaan validation awal.
 
 ## Urutan internal
 

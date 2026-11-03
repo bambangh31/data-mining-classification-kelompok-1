@@ -40,8 +40,10 @@ Status penyelesaian mengikuti pekerjaan nyata, bukan posisi kalender.
 | 15 / 1 Desember | Bambang: pendahuluan dan metode preprocessing. Benedictus: sumber/karakteristik dataset, baseline, metode evaluasi, hasil dan pembahasan evaluasi. Robertus Geraldyn: metode pemodelan dan pembahasan model. Abstrak, kesimpulan, pustaka dan pemeriksaan akhir bersama; artikel bahasa Indonesia mengikuti IMRAD/template dosen. |
 | 16 / 8 Desember | Bambang membuat slide masalah, tujuan/BOD dan preprocessing termasuk pembagian/transformasi data. Benedictus membuat slide sumber/karakteristik dataset, baseline, evaluasi, hasil dan keterbatasan. Robertus Geraldyn membuat slide model A/B dan konfigurasi percobaan. Identitas, alur, kesimpulan dan referensi dirapikan bersama. Semua latihan; pembicara dan durasi mengikuti aturan dosen. |
 
-Dataset dan algoritma belum ditetapkan. A/B adalah sebutan sementara untuk
-dua algoritma; lebih dari satu algoritma disarankan dalam deskripsi tugas.
+Dataset Diabetes telah diberikan pada 3 November 2026; preprocessing
+dan hasil lokal dijelaskan di [panduan preprocessing](../preprocessing.md).
+Algoritma awal A/B adalah Logistic Regression dan Random Forest, dengan baseline
+DummyClassifier. Lebih dari satu algoritma disarankan dalam deskripsi tugas.
 BOD mengikuti istilah serta format dosen.
 
 ## Alasan pembagian

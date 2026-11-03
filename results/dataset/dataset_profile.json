@@ -1,0 +1,20 @@
+{
+  "rows": 101766,
+  "columns": 50,
+  "patients": 71518,
+  "repeated_patient_rows_beyond_first": 30248,
+  "duplicate_rows": 0,
+  "duplicate_encounter_ids": 0,
+  "numeric_features": 8,
+  "categorical_features": 39,
+  "original_target_counts": {
+    "NO": 54864,
+    ">30": 35545,
+    "<30": 11357
+  },
+  "positive_prevalence_raw": 0.11159915885462728,
+  "lab_none_counts": {
+    "max_glu_serum": 96420,
+    "A1Cresult": 84748
+  }
+}

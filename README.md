@@ -23,16 +23,39 @@ dan artikel berbahasa Indonesia dengan struktur IMRAD.
 
 ## Dataset
 
-Belum ditentukan.
+**Diabetes 130-US Hospitals for Years 1999-2008**, dari
+[UCI](https://archive.ics.uci.edu/dataset/296/diabetes-130-us-hospitals-for-years-1999-2008).
+Data asli berisi 101.766 kunjungan, 50 kolom dan 71.518 pasien.
+Target awal: rawat inap ulang `<30` hari (biner); opsi tiga kelas tersedia.
+Data disiapkan untuk prediksi pada saat keluar rumah sakit.
+Sumber dan lisensi ada di [data/README.md](data/README.md).
 
 ## Algoritma
 
-Ditentukan setelah dataset diperiksa.
-Direncanakan membandingkan dua algoritma klasifikasi.
+Logistic Regression dan Random Forest, dengan DummyClassifier sebagai baseline.
+Percobaan awal sudah dijalankan pada validation; test belum dievaluasi.
+Lihat [bahan week 10](docs/week-10/README.md) dan [hasil week 11](docs/week-11/README.md).
 
 ## Cara Menjalankan
 
-Ditambahkan setelah kode awal tersedia.
+Dokumen PDF: [week 10](docs/week-10/week-10-data-mining-kelompok-1.pdf) dan
+[week 11](docs/week-11/week-11-data-mining-kelompok-1.pdf).
+
+Gunakan Python 3.12, dari root repo:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m src.preprocess --input "C:\lokasi\diabetes+130-us+hospitals+for+years+1999-2008.zip"
+.\.venv\Scripts\python.exe -m src.profile_data
+.\.venv\Scripts\python.exe -m src.mining
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+Setelah ekstraksi, perintah preprocessing dapat dijalankan tanpa `--input`.
+Lihat [panduan preprocessing](docs/preprocessing.md) dan
+[hasil eksekusi](results/preprocessing/preprocessing_report.md).
+Tuning, analisis kesalahan lanjutan dan evaluasi final menjadi tahap berikutnya.
 
 ## Struktur Repository
 
@@ -69,9 +92,9 @@ Ditambahkan setelah kode awal tersedia.
     └── presentasi/
 ```
 
-Setiap folder berisi README singkat. Notebook dan modul dibuat setelah
-dataset serta metode ditetapkan. `requirements.txt` belum memuat dependensi;
-isi dengan library dan versi yang sudah digunakan dan diuji.
+`src/preprocess.py` dan notebook preprocessing sudah tersedia. Library beserta
+versi yang dipakai tercantum di `requirements.txt`. Data/artefak hasil bersifat
+lokal dan dapat dibuat ulang; laporan agregat ada di `results/preprocessing/`.
 
 Sumber dan petunjuk dataset ada di [data/README.md](data/README.md).
 Data besar atau yang distribusinya dibatasi dapat disertakan melalui tautan
@@ -98,9 +121,9 @@ Proyek menggunakan Python. CI memakai Python 3.12 dan berjalan saat push ke
 `main`, saat pull request, atau secara manual dari tab **Actions**.
 
 Pemeriksaan awal mencakup pemasangan `requirements.txt`, kompatibilitas
-dependensi, dan sintaks berkas `.py` dalam `src/`. Saat ini belum ada library
-proyek atau berkas `.py`; CI memeriksa kesiapan dasar. Eksekusi notebook,
-pengujian pipeline, dan evaluasi model ditambahkan setelah kodenya tersedia.
+dependensi, sintaks `.py`, serta pengujian perilaku preprocessing dengan data
+sintetis, termasuk pemeriksaan metrik. CI tidak menjalankan dataset penuh,
+notebook, atau training model.
 
 Dependabot memeriksa library Python di `requirements.txt` dan GitHub Actions
 setiap bulan. Pembaruan diajukan melalui pull request untuk diperiksa sebelum

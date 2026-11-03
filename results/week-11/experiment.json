@@ -1,0 +1,364 @@
+{
+  "stage": "week-11 initial experiment",
+  "evaluation_set": "validation",
+  "test_evaluated": false,
+  "seed": 42,
+  "threshold": 0.5,
+  "threshold_tuned": false,
+  "raw_csv_sha256": "0689e7ec031237dc63031b938805c48377748761a3b26acab621567afa24df97",
+  "preprocessing": {
+    "dataset": "Diabetes 130-US Hospitals for Years 1999-2008",
+    "source": "https://archive.ics.uci.edu/dataset/296/diabetes-130-us-hospitals-for-years-1999-2008",
+    "license": "CC BY 4.0",
+    "raw_csv_sha256": "0689e7ec031237dc63031b938805c48377748761a3b26acab621567afa24df97",
+    "seed": 42,
+    "prediction_time": "at discharge",
+    "target_mode": "binary",
+    "target_mapping": {
+      "NO": 0,
+      ">30": 0,
+      "<30": 1
+    },
+    "split": "GroupShuffleSplit, approximately 70/15/15 percent patients; not stratified or temporal",
+    "patient_overlap_between_splits": 0,
+    "fit_on": "train only",
+    "quality": {
+      "raw_rows": 101766,
+      "raw_columns": 50,
+      "raw_unique_patients": 71518,
+      "exact_duplicates_removed": 0,
+      "death_discharge_rows_removed": 1652,
+      "invalid_gender_to_missing": 3,
+      "unknown_admin_codes_to_missing": {
+        "admission_type_id": 10237,
+        "discharge_disposition_id": 4680,
+        "admission_source_id": 6929
+      },
+      "missing_after_question_mark_normalization": {
+        "encounter_id": 0,
+        "patient_nbr": 0,
+        "race": 2273,
+        "gender": 0,
+        "age": 0,
+        "weight": 98569,
+        "admission_type_id": 0,
+        "discharge_disposition_id": 0,
+        "admission_source_id": 0,
+        "time_in_hospital": 0,
+        "payer_code": 40256,
+        "medical_specialty": 49949,
+        "num_lab_procedures": 0,
+        "num_procedures": 0,
+        "num_medications": 0,
+        "number_outpatient": 0,
+        "number_emergency": 0,
+        "number_inpatient": 0,
+        "diag_1": 21,
+        "diag_2": 358,
+        "diag_3": 1423,
+        "number_diagnoses": 0,
+        "max_glu_serum": 0,
+        "A1Cresult": 0,
+        "metformin": 0,
+        "repaglinide": 0,
+        "nateglinide": 0,
+        "chlorpropamide": 0,
+        "glimepiride": 0,
+        "acetohexamide": 0,
+        "glipizide": 0,
+        "glyburide": 0,
+        "tolbutamide": 0,
+        "pioglitazone": 0,
+        "rosiglitazone": 0,
+        "acarbose": 0,
+        "miglitol": 0,
+        "troglitazone": 0,
+        "tolazamide": 0,
+        "examide": 0,
+        "citoglipton": 0,
+        "insulin": 0,
+        "glyburide-metformin": 0,
+        "glipizide-metformin": 0,
+        "glimepiride-pioglitazone": 0,
+        "metformin-rosiglitazone": 0,
+        "metformin-pioglitazone": 0,
+        "change": 0,
+        "diabetesMed": 0,
+        "readmitted": 0
+      },
+      "clean_rows": 100114,
+      "clean_unique_patients": 70439,
+      "raw_target_counts": {
+        "NO": 54864,
+        ">30": 35545,
+        "<30": 11357
+      },
+      "clean_original_target_counts": {
+        "NO": 53212,
+        ">30": 35545,
+        "<30": 11357
+      }
+    },
+    "features": {
+      "dropped_over_50_percent_missing_train": [
+        "weight"
+      ],
+      "dropped_constant_train": [
+        "acetohexamide",
+        "examide",
+        "citoglipton"
+      ],
+      "numeric_features": [
+        "time_in_hospital",
+        "num_lab_procedures",
+        "num_procedures",
+        "num_medications",
+        "number_outpatient",
+        "number_emergency",
+        "number_inpatient",
+        "number_diagnoses"
+      ],
+      "categorical_features": [
+        "race",
+        "gender",
+        "age",
+        "admission_type_id",
+        "discharge_disposition_id",
+        "admission_source_id",
+        "payer_code",
+        "medical_specialty",
+        "diag_1",
+        "diag_2",
+        "diag_3",
+        "max_glu_serum",
+        "A1Cresult",
+        "metformin",
+        "repaglinide",
+        "nateglinide",
+        "chlorpropamide",
+        "glimepiride",
+        "glipizide",
+        "glyburide",
+        "tolbutamide",
+        "pioglitazone",
+        "rosiglitazone",
+        "acarbose",
+        "miglitol",
+        "troglitazone",
+        "tolazamide",
+        "insulin",
+        "glyburide-metformin",
+        "glipizide-metformin",
+        "glimepiride-pioglitazone",
+        "metformin-rosiglitazone",
+        "metformin-pioglitazone",
+        "change",
+        "diabetesMed"
+      ],
+      "retained_features": [
+        "race",
+        "gender",
+        "age",
+        "admission_type_id",
+        "discharge_disposition_id",
+        "admission_source_id",
+        "time_in_hospital",
+        "payer_code",
+        "medical_specialty",
+        "num_lab_procedures",
+        "num_procedures",
+        "num_medications",
+        "number_outpatient",
+        "number_emergency",
+        "number_inpatient",
+        "diag_1",
+        "diag_2",
+        "diag_3",
+        "number_diagnoses",
+        "max_glu_serum",
+        "A1Cresult",
+        "metformin",
+        "repaglinide",
+        "nateglinide",
+        "chlorpropamide",
+        "glimepiride",
+        "glipizide",
+        "glyburide",
+        "tolbutamide",
+        "pioglitazone",
+        "rosiglitazone",
+        "acarbose",
+        "miglitol",
+        "troglitazone",
+        "tolazamide",
+        "insulin",
+        "glyburide-metformin",
+        "glipizide-metformin",
+        "glimepiride-pioglitazone",
+        "metformin-rosiglitazone",
+        "metformin-pioglitazone",
+        "change",
+        "diabetesMed"
+      ],
+      "rare_category_min_frequency": 10
+    },
+    "splits": {
+      "train": {
+        "rows": 70071,
+        "patients": 49307,
+        "class_counts": {
+          "0": 62104,
+          "1": 7967
+        },
+        "class_proportions": {
+          "0": 0.8863010375190877,
+          "1": 0.11369896248091221
+        },
+        "encoded_shape": [
+          70071,
+          1222
+        ],
+        "nonzero_values": 3013053
+      },
+      "validation": {
+        "rows": 15065,
+        "patients": 10566,
+        "class_counts": {
+          "0": 13406,
+          "1": 1659
+        },
+        "class_proportions": {
+          "0": 0.8898771988051776,
+          "1": 0.11012280119482244
+        },
+        "encoded_shape": [
+          15065,
+          1222
+        ],
+        "nonzero_values": 647794
+      },
+      "test": {
+        "rows": 14978,
+        "patients": 10566,
+        "class_counts": {
+          "0": 13247,
+          "1": 1731
+        },
+        "class_proportions": {
+          "0": 0.8844304980638269,
+          "1": 0.11556950193617305
+        },
+        "encoded_shape": [
+          14978,
+          1222
+        ],
+        "nonzero_values": 644054
+      }
+    },
+    "versions": {
+      "python": "3.12.14",
+      "numpy": "2.3.4",
+      "pandas": "2.3.3",
+      "scipy": "1.16.3",
+      "scikit_learn": "1.7.2",
+      "joblib": "1.5.2"
+    }
+  },
+  "primary_ranking_metric": "average_precision",
+  "experiments": {
+    "Dummy_most_frequent": {
+      "parameters": {
+        "constant": null,
+        "random_state": null,
+        "strategy": "most_frequent"
+      },
+      "seconds_fit_and_predict": 0.014202700003806967,
+      "warnings": [],
+      "metrics": {
+        "accuracy": 0.8898771988051776,
+        "balanced_accuracy": 0.5,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.5,
+        "average_precision": 0.11012280119482244,
+        "tn": 13406,
+        "fp": 0,
+        "fn": 1659,
+        "tp": 0
+      }
+    },
+    "Logistic_Regression": {
+      "parameters": {
+        "C": 1.0,
+        "class_weight": "balanced",
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": null,
+        "max_iter": 1000,
+        "multi_class": "deprecated",
+        "n_jobs": null,
+        "penalty": "l2",
+        "random_state": 42,
+        "solver": "liblinear",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "seconds_fit_and_predict": 3.744086699996842,
+      "warnings": [],
+      "metrics": {
+        "accuracy": 0.6600730169266512,
+        "balanced_accuracy": 0.618594797593621,
+        "precision": 0.17572124391157737,
+        "recall": 0.5654008438818565,
+        "f1": 0.2681149063884522,
+        "roc_auc": 0.661974697213028,
+        "average_precision": 0.21022881342359298,
+        "tn": 9006,
+        "fp": 4400,
+        "fn": 721,
+        "tp": 938
+      }
+    },
+    "Random_Forest": {
+      "parameters": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": "balanced_subsample",
+        "criterion": "gini",
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 5,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 150,
+        "n_jobs": 2,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "seconds_fit_and_predict": 9.706743599999754,
+      "warnings": [],
+      "metrics": {
+        "accuracy": 0.6738798539661467,
+        "balanced_accuracy": 0.6179016493923668,
+        "precision": 0.17883932096328464,
+        "recall": 0.546112115732369,
+        "f1": 0.26944237918215613,
+        "roc_auc": 0.6673575667224836,
+        "average_precision": 0.20135461653398912,
+        "tn": 9246,
+        "fp": 4160,
+        "fn": 753,
+        "tp": 906
+      }
+    }
+  }
+}

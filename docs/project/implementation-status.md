@@ -1,16 +1,16 @@
 # Status implementasi Classification
 
-Catatan awal: 1 November 2026. Status berikut membedakan fondasi repo dari
+Pembaruan: 3 November 2026. Status berikut membedakan fondasi repo dari
 pekerjaan analisis yang belum dilakukan.
 
 ## Sudah tersedia
 
 | Bagian | Hasil | Batas |
 |---|---|---|
-| Struktur kerja | data/raw dan processed; notebooks; src; results; docs | Berisi petunjuk; belum ada dataset dan kode klasifikasi |
+| Struktur kerja | Dataset Diabetes lokal, profil/kamus data, preprocessing, baseline, dua model awal dan evaluasi validation | Tuning, CV dan evaluasi final belum dikerjakan |
 | Dokumen kelompok | CONTRIBUTING, SECURITY, template issue/PR, pembagian tiga anggota dan kalender Selasa | Pembagian adalah rencana yang disesuaikan dengan beban aktual |
-| Python | Versi acuan 3.12, requirements.txt, format file dan ignore | Dependensi proyek belum ditentukan |
-| CI | Instalasi requirements, pip check, sintaks .py dalam src | Belum menjalankan notebook atau menguji hasil model/metrik |
+| Python | Acuan 3.12, versi pandas/NumPy/SciPy/scikit-learn/joblib/Matplotlib pada requirements.txt | Dependensi pemodelan tambahan mengikuti kebutuhan eksperimen berikutnya |
+| CI | Instalasi requirements, pip check, sintaks .py dan tes perilaku preprocessing/metrik sintetis | Tidak melatih model penuh atau menjalankan dataset di CI; status eksekusi diperiksa pada commit terkait |
 | Dependabot | Pembaruan pip/Actions bulanan; alerts dan PR perbaikan keamanan | PR perlu ditinjau; bukan pemindaian rahasia atau audit dataset |
 | Pengaturan repo | Private, main, squash merge, hapus branch setelah merge | Auto-merge nonaktif; tidak mengklaim branch protection aktif |
 
@@ -19,16 +19,35 @@ CI pada commit `ace1056` sudah berhasil:
 Hasil itu membuktikan fondasi saat commit tersebut dapat dijalankan, bukan
 akurasi klasifikasi. Periksa CI pada commit terkait untuk perubahan berikutnya.
 
+## Week 10–11 — hasil lokal
+
+Dataset: 101.766 kunjungan, 50 kolom, 71.518 pasien. Cleaning/cohort menghasilkan
+100.114 baris; 1.652 kunjungan berstatus meninggal dikeluarkan. Target awal
+`<30=1`, lainnya 0. Train/validation/test: 70.071 / 15.065 / 14.978 baris;
+pasien antarset terpisah. Transformer di-fit pada train saja, menghasilkan
+1.222 fitur. Kolom weight dibuang karena missing >50% pada train;
+acetohexamide, examide dan citoglipton konstan pada train.
+
+Kode: `src/preprocess.py`. Cara menjalankan, pilihan cohort, batasan dan
+serah terima ada di [panduan](../preprocessing.md). Bukti eksekusi:
+[laporan agregat](../../results/preprocessing/preprocessing_report.md).
+Tujuh tes perilaku preprocessing/metrik lolos lokal; artefak/data disimpan lokal
+dan diabaikan Git. Week 10 mencakup contoh aktual, kamus 50 kolom, karakteristik,
+BOD dan dua algoritma. Week 11 mencakup baseline mayoritas, Logistic Regression
+dan Random Forest, masing-masing di-fit pada train dan dievaluasi pada validation.
+AP validation: baseline 0,1101; Logistic Regression 0,2102; Random Forest 0,2014.
+Threshold 0,5, tanpa tuning. Test tidak dibaca modul mining.
+Rincian ada di [week 10](../week-10/README.md) dan [week 11](../week-11/README.md).
+
 ## Menunggu pengerjaan
 
-- Pemilihan dataset, tujuan/BOD final, kamus data dan karakteristik aktual.
-- Pemilihan algoritma A/B, fitur, metrik, dan protokol pembagian/validasi.
-- Dependensi, kode preprocessing, baseline, model dan evaluasi.
-- Hasil eksperimen, analisis kesalahan dan keterbatasan.
+- Review target/cohort dan penyesuaian format BOD jika dosen memberi template.
+- Tuning, CV berbasis pasien, analisis kesalahan rinci serta evaluasi final.
 - Laporan pertama, artikel IMRAD dan materi presentasi dari hasil nyata.
 
 Undangan collaborator dilakukan setelah setup sesuai permintaan pengguna.
-Belum ada klaim bahwa dataset, eksperimen, atau laporan sudah selesai.
+Week 10 dan pipeline awal week 11 tersedia lokal; week 12 serta laporan kuliah
+week 13 belum dinyatakan selesai.
 
 ## Format pembaruan
 

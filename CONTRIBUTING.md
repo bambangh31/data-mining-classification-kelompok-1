@@ -16,8 +16,8 @@ Python environment secara langsung tanpa aktivasi:
 ```
 
 Di Linux/macOS, gunakan `.venv/bin/python` sebagai pengganti path tersebut.
-`requirements.txt` saat ini belum memuat library proyek. Tambahkan versi
-yang benar-benar digunakan dan diuji ketika coding dimulai.
+`requirements.txt` memuat versi library preprocessing yang sudah dijalankan.
+Catat versi dan jalankan pemeriksaan ulang saat memperbarui dependensi.
 
 ## Alur kerja kelompok
 
@@ -65,18 +65,19 @@ Bahasa Indonesia atau Inggris boleh digunakan secara konsisten.
 ## Pemeriksaan sebelum merge
 
 CI saat ini memasang dependensi, memeriksa kompatibilitasnya, dan memeriksa
-sintaks `.py` dalam `src/`. Pemeriksaan lokal dasar:
+sintaks `.py` dalam `src/`, serta tes preprocessing sintetis. Pemeriksaan lokal:
 
 ```text
 python -m pip install -r requirements.txt
 python -m pip check
 python -m compileall -q src
+python -m unittest discover -s tests -v
 git diff --check
 ```
 
 Gunakan environment proyek untuk menjalankan perintah Python di atas.
-CI belum menjalankan notebook, menguji perilaku model, atau membuktikan
-kebenaran metrik. Tambahkan pengujian yang relevan saat pipeline tersedia.
+CI belum menjalankan dataset penuh/notebook, melatih model atau membuktikan
+kebenaran metrik. Jalankan preprocessing penuh lokal saat logikanya berubah.
 Periksa dokumen dan hasil secara manual sesuai isi perubahan.
 
 ## Dokumen dan pelaporan masalah

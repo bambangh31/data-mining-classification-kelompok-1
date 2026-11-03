@@ -8,6 +8,10 @@ Buat notebook ketika eksplorasi atau coding dimulai. Rencana penamaan:
 4. `03_algoritma_B.ipynb` - algoritma klasifikasi kedua.
 5. `04_evaluasi.ipynb` - baseline, metrik, perbandingan, dan analisis kesalahan.
 
-Ganti A/B dengan nama algoritma setelah dipilih. Notebook tersebut belum dibuat.
+`01_preprocessing.ipynb` sudah dibuat untuk menjalankan modul dan membaca
+laporan agregat. `02_week11_mining.ipynb` menjalankan/membaca percobaan dua model
+awal pada validation. Notebook lain dalam daftar usulan belum dibuat. Pilih kernel environment proyek
+(instal Jupyter/ipykernel terpisah jika diperlukan).
+Ganti A/B dengan nama algoritma setelah dipilih.
 Cantumkan cara menjalankan dan lokasi data; hindari path absolut yang hanya
 berlaku pada satu komputer.

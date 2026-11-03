@@ -18,3 +18,9 @@ __pycache__/
 .ipynb_checkpoints/
 .pytest_cache/
 .ruff_cache/
+
+# Data dan artefak lokal; dibuat ulang melalui pipeline
+/data/raw/*
+!/data/raw/README.md
+/data/processed/*
+!/data/processed/README.md
