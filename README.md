@@ -34,6 +34,9 @@ Sumber dan lisensi ada di [data/README.md](data/README.md).
 
 Logistic Regression dan Random Forest, dengan DummyClassifier sebagai baseline.
 Percobaan awal sudah dijalankan pada validation; test belum dievaluasi.
+Pilihan algoritma untuk paper sedang dikaji; lihat
+[penelusuran kandidat algoritma](docs/algorithm-review.md). Usulan baru belum
+diimplementasikan dan tidak menggantikan hasil eksperimen awal.
 Lihat [bahan week 10](docs/week-10/README.md) dan [hasil week 11](docs/week-11/README.md).
 
 ## Cara Menjalankan
