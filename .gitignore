@@ -19,8 +19,10 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Data dan artefak lokal; dibuat ulang melalui pipeline
+# Hanya dua berkas data asli yang dipublikasikan; artefak hasil tetap lokal
 /data/raw/*
 !/data/raw/README.md
+!/data/raw/diabetic_data.csv
+!/data/raw/IDS_mapping.csv
 /data/processed/*
 !/data/processed/README.md

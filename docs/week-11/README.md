@@ -75,8 +75,9 @@ Jupyter/ipykernel diinstal terpisah bila memakai notebook; CLI tidak membutuhkan
 ## Berkas hasil
 
 Kode di `src/` dan dokumentasi/hasil agregat dapat disimpan di repo.
-Data asli, matriks, transformer, model joblib dan prediksi per baris berada
-lokal di `data/` yang diabaikan Git. Model dan prediksi validation ada di
+Data asli CSV dan mapping tersedia di repo pada `data/raw/`.
+Matriks, transformer, model joblib dan prediksi per baris tetap lokal pada
+`data/processed/` yang diabaikan Git. Model dan prediksi validation ada di
 `data/processed/diabetes/models_paper/`. Urutan prediksi sama dengan y_validation.csv
 dan ids_validation.csv. Jangan memasukkan ID sebagai prediktor.
 

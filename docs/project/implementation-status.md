@@ -7,7 +7,7 @@ pekerjaan analisis yang belum dilakukan.
 
 | Bagian | Hasil | Batas |
 |---|---|---|
-| Struktur kerja | Dataset Diabetes lokal, profil/kamus data, preprocessing, baseline, dua model awal dan evaluasi validation | Tuning, CV dan evaluasi final belum dikerjakan |
+| Struktur kerja | Dataset asli Diabetes di Git, profil/kamus data, preprocessing, baseline, dua model awal dan evaluasi validation | Artefak hasil tetap lokal; tuning, CV dan evaluasi final belum dikerjakan |
 | Dokumen kelompok | CONTRIBUTING, SECURITY, template issue/PR, pembagian tiga anggota dan kalender Selasa | Pembagian adalah rencana yang disesuaikan dengan beban aktual |
 | Python | Acuan 3.12, versi pandas/NumPy/SciPy/scikit-learn/joblib/Matplotlib pada requirements.txt | Dependensi pemodelan tambahan mengikuti kebutuhan eksperimen berikutnya |
 | CI | Instalasi requirements, pip check, sintaks .py dan tes perilaku preprocessing/metrik sintetis | Tidak melatih model penuh atau menjalankan dataset di CI; status eksekusi diperiksa pada commit terkait |

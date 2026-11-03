@@ -156,7 +156,7 @@ story.append(table([
     ['results/preprocessing/', 'Laporan cleaning, missing dan ringkasan transformasi.'],
     ['results/week-11/', 'validation_metrics.csv, experiment.json, report.md dan grafik confusion matrix.'],
 ], [71,99], small=True))
-story.append(p('Data dan artefak disimpan lokal serta diabaikan Git; kode, dokumentasi dan laporan agregat dapat disimpan di repo. Jangan memakai ID sebagai prediktor. Muat joblib hanya dari sumber tepercaya.', 'SmallID'))
+story.append(p('CSV asli dan mapping disertakan di repo melalui Git biasa. Matriks, transformer, model dan prediksi per baris tetap lokal pada data/processed/ dan diabaikan Git. Setelah clone, jalankan preprocessing tanpa --input. Jangan memakai ID sebagai prediktor; muat joblib hanya dari sumber tepercaya.', 'SmallID'))
 story.append(p('Versi runtime', 'HeadingID'))
 versions = pre['versions']
 story.append(p('; '.join(f'{key} {value}' for key,value in versions.items()) + '; Matplotlib 3.10.7; ngboost 0.5.11; aeon 1.6.0.', 'SmallID'))

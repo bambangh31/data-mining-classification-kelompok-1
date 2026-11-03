@@ -49,13 +49,14 @@ Gunakan Python 3.12, dari root repo:
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m src.preprocess --input "C:\lokasi\diabetes+130-us+hospitals+for+years+1999-2008.zip"
+.\.venv\Scripts\python.exe -m src.preprocess
 .\.venv\Scripts\python.exe -m src.profile_data
 .\.venv\Scripts\python.exe -m src.mining
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Setelah ekstraksi, perintah preprocessing dapat dijalankan tanpa `--input`.
+Dataset asli sudah disertakan di `data/raw/`, sehingga tidak perlu unduh ulang.
+Opsi `--input "lokasi.zip"` tetap tersedia untuk ZIP asli UCI.
 Lihat [panduan preprocessing](docs/preprocessing.md) dan
 [hasil eksekusi](results/preprocessing/preprocessing_report.md).
 Tuning, analisis kesalahan lanjutan dan evaluasi final menjadi tahap berikutnya.
