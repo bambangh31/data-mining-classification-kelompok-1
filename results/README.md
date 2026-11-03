@@ -1,7 +1,8 @@
 # Hasil eksperimen
 
 - `dataset/`: profil asli, kamus, contoh subset data dan grafik karakteristik.
-- `week-11/`: baseline, dua algoritma awal dan evaluasi validation (bukan uji final).
+- `week-11/`: baseline prior, NGBoost/Rotation Forest, metrik diskriminasi dan kalibrasi validation.
+- `archive/week-11-lr-rf/`: hasil eksperimen lama LR/RF dengan pipeline berbeda; bukan perbandingan terkontrol.
 
 - `metrics/`: tabel metrik dan konfigurasi percobaan.
 - `figures/`: grafik dan confusion matrix.

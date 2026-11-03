@@ -93,19 +93,28 @@ atau kesiapan penggunaan klinis dari skor tugas kuliah.
 
 | Algoritma | Alasan dan konfigurasi awal |
 |---|---|
-| Logistic Regression | Model linier probabilistik yang relatif mudah dijelaskan; one-hot kategori dan scaling numerik; solver liblinear, C=1, max_iter=1000, class_weight=balanced |
-| Random Forest | Ensemble pohon untuk interaksi/nonlinier; 150 pohon, max_depth=16, min_samples_leaf=5, max_features=sqrt, class_weight=balanced_subsample |
-| DummyClassifier | Baseline selalu memprediksi kelas mayoritas; bukan pengganti dua algoritma utama |
+| NGBoost | NGBClassifier dengan distribusi Bernoulli; natural gradient boosting untuk probabilitas risiko. 150 estimator, learning_rate=0,03, minibatch_frac=0,75, base tree depth=3 dan min_samples_leaf=20 |
+| Rotation Forest | Ensemble dengan PCA kelompok fitur; 20 estimator, min_group=max_group=3, remove_proportion=0,5, seed=42 |
+| DummyClassifier | strategy=prior: label mayoritas dan probabilitas prevalensi train; pembanding untuk AP, Brier score dan log loss |
 
 Parameter awal ditetapkan sebelum melihat hasil validation, bukan hasil tuning.
-Seed 42; threshold 0,5. Class weighting memakai label train, tanpa oversampling
-sebelum split. Dua algoritma memakai train/validation yang sama.
+Seed 42; threshold 0,5. Tidak ada class weighting atau oversampling.
+Dua algoritma memakai split dan adapter fitur yang sama: one-hot diikuti
+TruncatedSVD 32 komponen dan StandardScaler, seluruh fit hanya pada train.
+Adapter memberi masukan kontinu untuk Rotation Forest dan membatasi komputasi.
+Tambahkan Brier score, log loss dan kurva kalibrasi untuk menilai probabilitas;
+NGBoost tidak otomatis terkalibrasi. Ablasi adapter menjadi tindak lanjut.
 AP dipilih karena kelas positif sedikit; akurasi saja berisiko menyesatkan.
 Average precision bukan trapezoidal PR-AUC.
 
-Referensi algoritma: [Logistic Regression](https://scikit-learn.org/1.7/modules/generated/sklearn.linear_model.LogisticRegression.html),
-[Random Forest](https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.RandomForestClassifier.html),
+Referensi algoritma: [NGBoost](https://proceedings.mlr.press/v119/duan20a.html),
+[Rotation Forest](https://www.lucykuncheva.co.uk/papers/jrlkcatpami06.pdf),
 [average precision](https://scikit-learn.org/1.7/modules/generated/sklearn.metrics.average_precision_score.html).
+
+Algoritma dipilih sebagai arah eksperimen, bukan klaim belum pernah dipakai.
+Lihat [penelusuran awal](../algorithm-review.md). Mengganti algoritma saja belum
+membuktikan kontribusi baru. Hasil LR/RF lama tetap diarsipkan sebagai eksperimen
+terdahulu dengan representasi/pembobotan berbeda, bukan pembanding terkontrol.
 
 ## Rencana coding week 11–12
 

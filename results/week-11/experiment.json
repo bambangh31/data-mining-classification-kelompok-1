@@ -266,13 +266,13 @@
   },
   "primary_ranking_metric": "average_precision",
   "experiments": {
-    "Dummy_most_frequent": {
+    "Dummy_prior": {
       "parameters": {
         "constant": null,
         "random_state": null,
-        "strategy": "most_frequent"
+        "strategy": "prior"
       },
-      "seconds_fit_and_predict": 0.014202700003806967,
+      "seconds_fit_and_predict": 0.01717340000141121,
       "warnings": [],
       "metrics": {
         "accuracy": 0.8898771988051776,
@@ -282,83 +282,109 @@
         "f1": 0.0,
         "roc_auc": 0.5,
         "average_precision": 0.11012280119482244,
+        "brier_score": 0.0980085587813722,
+        "log_loss": 0.34683604992454026,
         "tn": 13406,
         "fp": 0,
         "fn": 1659,
         "tp": 0
       }
     },
-    "Logistic_Regression": {
+    "NGBoost": {
       "parameters": {
-        "C": 1.0,
-        "class_weight": "balanced",
-        "dual": false,
-        "fit_intercept": true,
-        "intercept_scaling": 1,
-        "l1_ratio": null,
-        "max_iter": 1000,
-        "multi_class": "deprecated",
-        "n_jobs": null,
-        "penalty": "l2",
-        "random_state": 42,
-        "solver": "liblinear",
+        "Dist": "<class 'ngboost.distns.categorical.k_categorical.<locals>.Categorical'>",
+        "Score": "<class 'ngboost.scores.LogScore'>",
+        "Base": "DecisionTreeRegressor(max_depth=3, min_samples_leaf=20, random_state=42)",
+        "natural_gradient": true,
+        "n_estimators": 150,
+        "learning_rate": 0.03,
+        "minibatch_frac": 0.75,
+        "col_sample": 1.0,
+        "verbose": false,
+        "verbose_eval": 100,
         "tol": 0.0001,
-        "verbose": 0,
-        "warm_start": false
+        "random_state": "RandomState(MT19937) at 0x1A688C63840",
+        "validation_fraction": 0.1,
+        "early_stopping_rounds": null,
+        "Base__ccp_alpha": 0.0,
+        "Base__criterion": "squared_error",
+        "Base__max_depth": 3,
+        "Base__max_features": null,
+        "Base__max_leaf_nodes": null,
+        "Base__min_impurity_decrease": 0.0,
+        "Base__min_samples_leaf": 20,
+        "Base__min_samples_split": 2,
+        "Base__min_weight_fraction_leaf": 0.0,
+        "Base__monotonic_cst": null,
+        "Base__random_state": 42,
+        "Base__splitter": "best"
       },
-      "seconds_fit_and_predict": 3.744086699996842,
+      "seconds_fit_and_predict": 99.89993379999942,
       "warnings": [],
       "metrics": {
-        "accuracy": 0.6600730169266512,
-        "balanced_accuracy": 0.618594797593621,
-        "precision": 0.17572124391157737,
-        "recall": 0.5654008438818565,
-        "f1": 0.2681149063884522,
-        "roc_auc": 0.661974697213028,
-        "average_precision": 0.21022881342359298,
-        "tn": 9006,
-        "fp": 4400,
-        "fn": 721,
-        "tp": 938
+        "accuracy": 0.8898771988051776,
+        "balanced_accuracy": 0.5,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "roc_auc": 0.6416543400852335,
+        "average_precision": 0.1992875490857497,
+        "brier_score": 0.0948218715318791,
+        "log_loss": 0.3328517378350517,
+        "tn": 13406,
+        "fp": 0,
+        "fn": 1659,
+        "tp": 0
       }
     },
-    "Random_Forest": {
+    "Rotation_Forest": {
       "parameters": {
-        "bootstrap": true,
-        "ccp_alpha": 0.0,
-        "class_weight": "balanced_subsample",
-        "criterion": "gini",
-        "max_depth": 16,
-        "max_features": "sqrt",
-        "max_leaf_nodes": null,
-        "max_samples": null,
-        "min_impurity_decrease": 0.0,
-        "min_samples_leaf": 5,
-        "min_samples_split": 2,
-        "min_weight_fraction_leaf": 0.0,
-        "monotonic_cst": null,
-        "n_estimators": 150,
+        "base_estimator": null,
+        "contract_max_n_estimators": 500,
+        "max_group": 3,
+        "min_group": 3,
+        "n_estimators": 20,
         "n_jobs": 2,
-        "oob_score": false,
+        "pca_solver": "deprecated",
         "random_state": 42,
-        "verbose": 0,
-        "warm_start": false
+        "remove_proportion": 0.5,
+        "time_limit_in_minutes": 0.0,
+        "verbose": 0
       },
-      "seconds_fit_and_predict": 9.706743599999754,
+      "seconds_fit_and_predict": 83.94027140000071,
       "warnings": [],
       "metrics": {
-        "accuracy": 0.6738798539661467,
-        "balanced_accuracy": 0.6179016493923668,
-        "precision": 0.17883932096328464,
-        "recall": 0.546112115732369,
-        "f1": 0.26944237918215613,
-        "roc_auc": 0.6673575667224836,
-        "average_precision": 0.20135461653398912,
-        "tn": 9246,
-        "fp": 4160,
-        "fn": 753,
-        "tp": 906
+        "accuracy": 0.8875539329571855,
+        "balanced_accuracy": 0.5076736622657871,
+        "precision": 0.3300970873786408,
+        "recall": 0.020494273658830622,
+        "f1": 0.03859250851305335,
+        "roc_auc": 0.5932433607544129,
+        "average_precision": 0.15682943151919104,
+        "brier_score": 0.10098639230003319,
+        "log_loss": 0.6967762243631113,
+        "tn": 13337,
+        "fp": 69,
+        "fn": 1625,
+        "tp": 34
       }
     }
-  }
+  },
+  "algorithm_revision": "NGBoost and Rotation Forest; prior LR/RF run archived",
+  "versions": {
+    "numpy": "2.3.4",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.7.2",
+    "ngboost": "0.5.11",
+    "aeon": "1.6.0"
+  },
+  "feature_adapter": {
+    "method": "TruncatedSVD + StandardScaler, fit train only",
+    "components": 32,
+    "random_state": 42,
+    "explained_variance_ratio_sum": 0.76103276014328
+  },
+  "class_reweighting": false,
+  "probability_calibration_fitted": false
 }

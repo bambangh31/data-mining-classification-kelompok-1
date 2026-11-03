@@ -44,7 +44,7 @@ Tanggal kelas tidak otomatis menjadi batas waktu pengumpulan.
 
 Status penyelesaian mengikuti hasil nyata, bukan posisi minggu pada kalender.
 BOD mengikuti penjelasan/template dosen. Dataset Diabetes telah diberikan;
-Logistic Regression dan Random Forest dipakai sebagai algoritma awal.
+NGBoost dan Rotation Forest dipakai sebagai algoritma awal.
 [Preprocessing](../preprocessing.md) dan [percobaan week 11](../week-11/README.md)
 sudah dijalankan lokal; tuning dan evaluasi final masih menunggu.
 

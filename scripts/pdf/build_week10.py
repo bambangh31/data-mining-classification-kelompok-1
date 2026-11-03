@@ -209,17 +209,17 @@ page('Algoritma klasifikasi')
 story.append(p('06 / Dua algoritma dan baseline', 'HeadingID'))
 story.append(table([
     ['Algoritma', 'Alasan pemilihan', 'Konfigurasi awal'],
-    ['Logistic Regression', 'Model linier probabilistik, relatif mudah dijelaskan. Menggunakan scaling numerik dan one-hot kategori.', 'solver=liblinear; C=1; max_iter=1000; class_weight=balanced; seed=42'],
-    ['Random Forest', 'Ensemble pohon untuk menangkap hubungan nonlinier dan interaksi antarfitur.', '150 pohon; max_depth=16; min_samples_leaf=5; max_features=sqrt; class_weight=balanced_subsample; seed=42'],
-    ['DummyClassifier', 'Baseline selalu memprediksi kelas mayoritas untuk menguji apakah model memberi nilai tambah.', 'strategy=most_frequent; bukan pengganti dua algoritma utama'],
+    ['NGBoost', 'Natural gradient boosting untuk probabilitas readmission; distribusi Bernoulli.', '150 estimator; learning_rate=0,03; minibatch_frac=0,75; base tree depth=3, min_samples_leaf=20; seed=42'],
+    ['Rotation Forest', 'Ensemble dengan PCA pada kelompok fitur; mekanisme berbeda dari Random Forest.', '20 estimator; min_group=max_group=3; remove_proportion=0,5; seed=42; n_jobs=2'],
+    ['DummyClassifier', 'Pembanding mayoritas dengan probabilitas prevalensi train; menguji nilai tambah model.', 'strategy=prior; label mayoritas dan probabilitas prevalensi train'],
 ], [35, 67, 68]))
 story.append(p('Prinsip perbandingan', 'HeadingID'))
 for text in [
     'Kedua model menggunakan target, cohort, train dan validation yang sama. Parameter awal ditetapkan sebelum melihat skor validation; belum merupakan hasil tuning.',
-    'Threshold awal 0,5. Bobot kelas dihitung dari label train. Pembobotan kelas perlu dibaca bersama perubahan precision/recall dan tidak membuktikan probabilitas terkalibrasi.',
+    'Threshold awal 0,5; tidak ada class weighting atau oversampling. Kedua model memakai SVD 32 komponen + scaling yang sama, fit hanya train. Adapter mengurangi komputasi dan memberi fitur kontinu; ablasinya masih diperlukan.',
     'Average precision (AP) dihitung dari probabilitas dan merangkum kurva precision-recall. AP tidak sama dengan integrasi trapezoid PR-AUC.',
     'Precision, recall dan F1 mengacu kelas positif <30. Confusion matrix menunjukkan false positive dan false negative, sehingga akurasi tinggi pada kelas mayoritas tidak menutupi kegagalan mendeteksi readmission dini.',
-    'Hasil eksperimen validation awal dibahas pada week 11, tidak dimasukkan sebagai hasil akhir week 10. Test tetap disimpan untuk evaluasi final.',
+    'Brier score, log loss dan kurva kalibrasi melengkapi AP; model probabilistik tidak otomatis terkalibrasi. Pemilihan algoritma bukan klaim pertama pada dataset. Test disimpan untuk evaluasi final.',
 ]:
     story.append(p('- ' + text))
 
@@ -230,7 +230,7 @@ story.append(table([
     ['Preprocessing', 'Normalisasi missing/kode tidak diketahui, validasi tipe/ID, keputusan cohort dan pemisahan target.'],
     ['Pembagian data', 'GroupShuffleSplit, seed 42: sekitar 70% pasien train, 15% validation, 15% test. Proporsi baris dapat berbeda.'],
     ['Transformasi', 'Fit pada train saja: seleksi kolom missing/konstan, imputasi, scaling dan one-hot encoding. Validation/test hanya transform.'],
-    ['Mining awal', 'Latih baseline, Logistic Regression dan Random Forest pada train dengan konfigurasi awal.'],
+    ['Mining awal', 'Fit SVD 32 + scaling pada train, lalu latih baseline prior, NGBoost dan Rotation Forest dengan fitur yang sama.'],
     ['Evaluasi awal', 'Nilai pada validation menggunakan AP dan metrik pelengkap; tidak memakai test untuk pemilihan model.'],
     ['Lanjutan week 12', 'Tuning, CV berbasis pasien dan analisis kesalahan. Setiap fold mempelajari preprocessing ulang dari bagian latihnya sendiri.'],
 ], [37, 133]))
@@ -238,8 +238,8 @@ story.append(p('Split ini tidak stratified dan bukan temporal. Distribusi kelas 
 story.append(p('08 / Referensi dan keterlacakan', 'HeadingID'))
 references = [
     ('Dataset UCI - Clore dkk. (2014), DOI 10.24432/C5230J', 'https://doi.org/10.24432/C5230J'),
-    ('Dokumentasi Logistic Regression, scikit-learn 1.7', 'https://scikit-learn.org/1.7/modules/generated/sklearn.linear_model.LogisticRegression.html'),
-    ('Dokumentasi Random Forest, scikit-learn 1.7', 'https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.RandomForestClassifier.html'),
+    ('NGBoost, ICML 2020 dan dokumentasi NGBClassifier', 'https://stanfordmlgroup.github.io/ngboost/useage/'),
+    ('Rotation Forest, Rodriguez dkk. (2006)', 'https://www.lucykuncheva.co.uk/papers/jrlkcatpami06.pdf'),
     ('Dokumentasi average precision, scikit-learn 1.7', 'https://scikit-learn.org/1.7/modules/generated/sklearn.metrics.average_precision_score.html'),
 ]
 for title, link in references:

@@ -4,3 +4,5 @@ scipy==1.16.3
 scikit-learn==1.7.2
 joblib==1.5.2
 matplotlib==3.10.7
+ngboost==0.5.11
+aeon==1.6.0

@@ -32,11 +32,11 @@ Sumber dan lisensi ada di [data/README.md](data/README.md).
 
 ## Algoritma
 
-Logistic Regression dan Random Forest, dengan DummyClassifier sebagai baseline.
+NGBoost dan Rotation Forest, dengan DummyClassifier(strategy="prior") sebagai baseline.
 Percobaan awal sudah dijalankan pada validation; test belum dievaluasi.
-Pilihan algoritma untuk paper sedang dikaji; lihat
-[penelusuran kandidat algoritma](docs/algorithm-review.md). Usulan baru belum
-diimplementasikan dan tidak menggantikan hasil eksperimen awal.
+Alasan pemilihan dan batas klaim kebaruan ada pada
+[penelusuran algoritma](docs/algorithm-review.md). Hasil Logistic Regression/
+Random Forest sebelumnya tersedia di results/archive/week-11-lr-rf.
 Lihat [bahan week 10](docs/week-10/README.md) dan [hasil week 11](docs/week-11/README.md).
 
 ## Cara Menjalankan

@@ -93,7 +93,14 @@ Semua berkas berikut berada di `data/processed/diabetes/` dan diabaikan Git:
 | `ids_train.csv`, `ids_validation.csv`, `ids_test.csv` | Metadata ID untuk pelacakan/CV kelompok, bukan fitur |
 | `feature_names.json`, `feature_schema.json` | Nama fitur encoded dan keputusan kolom |
 | `preprocessor.joblib` | Transformer yang di-fit pada train; muat hanya artefak tepercaya |
+| `models_paper/feature_adapter.joblib` | SVD 32 komponen + scaling, fit hanya train untuk kedua model utama |
 | `metadata.json` | Hash CSV asli, versi library, seed, target, konfigurasi dan distribusi |
+
+Model utama NGBoost dan Rotation Forest memakai adapter kontinu SVD 32 komponen
+dan scaling yang sama setelah preprocessing. Adapter di-fit hanya pada train;
+matriks preprocessing tetap 1.222 kolom, sedangkan masukan model menjadi 32.
+Ablasi adapter masih diperlukan; jangan menyimpulkan model baru lebih baik dari
+LR/RF arsip yang memakai representasi/pembobotan berbeda.
 
 Model dilatih pada train dan parameter dipilih lewat validation.
 Perbandingan model memakai set yang sama. Test disimpan untuk evaluasi final

@@ -42,7 +42,7 @@ Status penyelesaian mengikuti pekerjaan nyata, bukan posisi kalender.
 
 Dataset Diabetes telah diberikan pada 3 November 2026; preprocessing
 dan hasil lokal dijelaskan di [panduan preprocessing](../preprocessing.md).
-Algoritma awal A/B adalah Logistic Regression dan Random Forest, dengan baseline
+Algoritma awal A/B adalah NGBoost dan Rotation Forest, dengan baseline
 DummyClassifier. Lebih dari satu algoritma disarankan dalam deskripsi tugas.
 BOD mengikuti istilah serta format dosen.
 

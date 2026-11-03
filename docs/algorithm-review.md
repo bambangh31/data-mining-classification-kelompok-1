@@ -1,15 +1,13 @@
 # Kandidat algoritma untuk arah paper
 
-Penelusuran awal: 3 November 2026. Ini usulan penelitian, bukan perubahan
-algoritma yang sudah dijalankan atau klaim metode pertama pada dataset ini.
-Hasil week 11 Logistic Regression/Random Forest tetap menjadi eksperimen awal.
-PDF week 10-11 mencatat rancangan dan hasil tahap tersebut, bukan keputusan
-final algoritma paper.
+Penelusuran dan revisi: 3 November 2026. NGBoost dan Rotation Forest dipilih
+untuk eksperimen utama berikutnya. Ini bukan klaim metode pertama pada dataset.
+Hasil Logistic Regression/Random Forest diarsipkan di results/archive/week-11-lr-rf.
+PDF week 10-11 mengikuti revisi algoritma dan hasil eksekusi terbaru.
 
 ## Kesimpulan awal
 
-NGBoost merupakan kandidat utama untuk ditelusuri/dicoba berikutnya. Rotation
-Forest merupakan alternatif pembanding di luar daftar algoritma yang diberikan.
+NGBoost dan Rotation Forest menjadi dua algoritma utama di luar daftar yang diberikan.
 Keduanya algoritma yang sudah dipublikasikan; potensi kontribusi adalah evaluasi
 aplikasi/protokol pada dataset, bukan penciptaan algoritma baru.
 

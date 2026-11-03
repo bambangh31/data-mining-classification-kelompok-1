@@ -31,12 +31,15 @@ acetohexamide, examide dan citoglipton konstan pada train.
 Kode: `src/preprocess.py`. Cara menjalankan, pilihan cohort, batasan dan
 serah terima ada di [panduan](../preprocessing.md). Bukti eksekusi:
 [laporan agregat](../../results/preprocessing/preprocessing_report.md).
-Tujuh tes perilaku preprocessing/metrik lolos lokal; artefak/data disimpan lokal
-dan diabaikan Git. Week 10 mencakup contoh aktual, kamus 50 kolom, karakteristik,
-BOD dan dua algoritma. Week 11 mencakup baseline mayoritas, Logistic Regression
-dan Random Forest, masing-masing di-fit pada train dan dievaluasi pada validation.
-AP validation: baseline 0,1101; Logistic Regression 0,2102; Random Forest 0,2014.
-Threshold 0,5, tanpa tuning. Test tidak dibaca modul mining.
+Sebelas tes preprocessing/metrik/model lolos lokal; artefak/data tetap lokal.
+Week 10 mencakup dataset, kamus, BOD dan pilihan NGBoost/Rotation Forest.
+Week 11 memakai baseline prior dan dua model utama dengan adapter SVD 32
+komponen + scaling yang sama, seluruh fit pada train. Tidak ada balancing.
+AP validation: Dummy_prior 0,1101; NGBoost 0,1993; Rotation_Forest 0,1568.
+Threshold 0,5 tanpa tuning atau kalibrasi pascatraining; test tidak dievaluasi.
+NGBoost belum memprediksi kelas positif pada threshold ini; Rotation Forest
+mengenali 34/1.659 kasus positif. Hasil ini belum memadai untuk penggunaan klinis.
+Arsip LR/RF memakai representasi/pembobotan berbeda, bukan pembanding terkontrol.
 Rincian ada di [week 10](../week-10/README.md) dan [week 11](../week-11/README.md).
 
 ## Menunggu pengerjaan
