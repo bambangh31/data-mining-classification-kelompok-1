@@ -33,16 +33,19 @@ Sumber dan lisensi ada di [data/README.md](data/README.md).
 ## Algoritma
 
 NGBoost dan Rotation Forest, dengan DummyClassifier(strategy="prior") sebagai baseline.
-Percobaan awal sudah dijalankan pada validation; test belum dievaluasi.
+Week 11 membandingkan model pada set validasi. Week 12 mengunci ambang dari
+validasi dan melaporkan hasil pada set uji dengan pasien terpisah.
 Alasan pemilihan dan batas klaim kebaruan ada pada
 [penelusuran algoritma](docs/algorithm-review.md). Hasil Logistic Regression/
 Random Forest sebelumnya tersedia di results/archive/week-11-lr-rf.
-Lihat [bahan week 10](docs/week-10/README.md) dan [hasil week 11](docs/week-11/README.md).
+Lihat [bahan week 10](docs/week-10/README.md), [hasil week 11](docs/week-11/README.md),
+dan [hasil week 12](docs/week-12/README.md).
 
 ## Cara Menjalankan
 
-Dokumen PDF: [week 10](docs/week-10/week-10-data-mining-kelompok-1.pdf) dan
-[week 11](docs/week-11/week-11-data-mining-kelompok-1.pdf).
+Dokumen PDF: [Week 10](docs/week-10/week-10-data-mining-kelompok-1.pdf),
+[Week 11](docs/week-11/week-11-data-mining-kelompok-1.pdf), dan
+[Week 12](docs/week-12/week-12-data-mining-kelompok-1.pdf).
 
 Gunakan Python 3.12, dari root repo:
 
@@ -59,7 +62,8 @@ Dataset asli sudah disertakan di `data/raw/`, sehingga tidak perlu unduh ulang.
 Opsi `--input "lokasi.zip"` tetap tersedia untuk ZIP asli UCI.
 Lihat [panduan preprocessing](docs/preprocessing.md) dan
 [hasil eksekusi](results/preprocessing/preprocessing_report.md).
-Tuning, analisis kesalahan lanjutan dan evaluasi final menjadi tahap berikutnya.
+Untuk mengulang evaluasi Week 12 tanpa menimpa hasil, ikuti
+[langkah reproduksi](docs/week-12/README.md#reproduksi).
 
 ## Struktur Repository
 
