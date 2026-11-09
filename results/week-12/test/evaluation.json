@@ -4,7 +4,7 @@
   "patients": 10566,
   "positives": 1731,
   "patient_overlap": 0,
-  "protocol_sha256": "90b3e9f965da8507471dcd8421e62f66f01c93d149c8f00566190f2faf64ee8f",
+  "protocol_sha256": "2c9c67c553abab6a0eaf88c59dc741ed7aaad770b5c7197a55245e5266d41dbe",
   "input_hashes": {
     "X_test.npz": "4aa997871df0d7634816c33418e4aa738a97a869c0bbae97d96baa5c8795c624",
     "X_test.csv": "b8e75144d41532b4c98aeab9eb14745fd8c0ac8093cd4b5cc51184073a8180b5",

@@ -27,6 +27,10 @@ def sha(path):
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
+def text_sha(path):
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
+
+
 def artifact_hashes(data):
     names = ["metadata.json", "ids_train.csv", "ids_validation.csv",
              "X_validation.npz", "y_validation.csv",
@@ -79,11 +83,11 @@ def freeze(data, output, week11):
         "threshold_rule": "maximize positive-class F1 over unique validation scores; higher threshold on ties",
         "primary_model_rule": "highest validation average precision among the two trained models",
         "primary_model": primary, "baseline_keeps_threshold": 0.5,
-        "raw_csv_sha256": meta["raw_csv_sha256"], "week11_experiment_sha256": sha(week11 / "experiment.json"),
+        "raw_csv_sha256": meta["raw_csv_sha256"], "week11_experiment_sha256": text_sha(week11 / "experiment.json"),
         "artifact_hashes": artifact_hashes(data), "models": choices,
     }
     output.mkdir(parents=True, exist_ok=True)
-    with (output / "protocol.json").open("x", encoding="utf-8") as stream:
+    with (output / "protocol.json").open("x", encoding="utf-8", newline="\n") as stream:
         json.dump(protocol, stream, indent=2)
         stream.write("\n")
     return protocol

@@ -7,7 +7,7 @@
   "primary_model": "NGBoost",
   "baseline_keeps_threshold": 0.5,
   "raw_csv_sha256": "0689e7ec031237dc63031b938805c48377748761a3b26acab621567afa24df97",
-  "week11_experiment_sha256": "fe6b059b6e7dc1f8bdfe5543f95ccbca3c9c1ef927c9762b04535f95a776b9d9",
+  "week11_experiment_sha256": "67d389a7ca06a67781774d43bbec4f0af810f6d2869f21c5bb108b9d60dbdb53",
   "artifact_hashes": {
     "metadata.json": "15c545a0eea690f2658ed7c56f90e654c98ab536c42a41f5b5624a4cd915f896",
     "ids_train.csv": "ffcfc6032330b01056b8e1b35f7da02c1c23a02f34be2c15a9ecf7c2431ad6a0",
