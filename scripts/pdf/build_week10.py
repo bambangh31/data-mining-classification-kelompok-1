@@ -101,8 +101,11 @@ def add_academic_cover(path, week):
     cover.setFillColor(colors.black)
     cover.setFont('TimesCover-Bold', 12)
     cover.drawCentredString(width/2, 263*mm, 'DATA MINING')
-    subtitle = ('WEEK 10: DATASET, KARAKTERISTIK DATA, BOD DAN ALGORITMA' if week == 10
-                else 'WEEK 11: PREPROCESSING, MINING DAN EVALUASI AWAL')
+    subtitle = {
+        10: 'WEEK 10: DATASET, KARAKTERISTIK DATA, BOD DAN ALGORITMA',
+        11: 'WEEK 11: PREPROCESSING, MINING DAN EVALUASI AWAL',
+        12: 'WEEK 12: PEMILIHAN AMBANG DAN EVALUASI UJI',
+    }[week]
     cover.drawCentredString(width/2, 248*mm, subtitle)
     cover.drawCentredString(width/2, 240*mm, 'KLASIFIKASI READMISSION PASIEN DIABETES')
     cover.drawImage(str(ROOT/'docs/assets/logo-ukwms.png'), (width-95*mm)/2,

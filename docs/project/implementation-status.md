@@ -1,13 +1,13 @@
 # Status implementasi Classification
 
-Pembaruan: 3 November 2026. Status berikut membedakan fondasi repo dari
+Pembaruan: 9 November 2026. Status berikut membedakan fondasi repo dari
 pekerjaan analisis yang belum dilakukan.
 
 ## Sudah tersedia
 
 | Bagian | Hasil | Batas |
 |---|---|---|
-| Struktur kerja | Dataset asli Diabetes di Git, profil/kamus data, preprocessing, baseline, dua model awal dan evaluasi validation | Artefak hasil tetap lokal; tuning, CV dan evaluasi final belum dikerjakan |
+| Struktur kerja | Dataset asli Diabetes di Git, profil/kamus data, preprocessing, dua model, baseline, serta evaluasi validasi dan uji | Model tetap lokal; CV dan tuning hiperparameter belum dilakukan |
 | Dokumen kelompok | CONTRIBUTING, SECURITY, template issue/PR, pembagian tiga anggota dan kalender Selasa | Pembagian adalah rencana yang disesuaikan dengan beban aktual |
 | Python | Acuan 3.12, versi pandas/NumPy/SciPy/scikit-learn/joblib/Matplotlib pada requirements.txt | Dependensi pemodelan tambahan mengikuti kebutuhan eksperimen berikutnya |
 | CI | Instalasi requirements, pip check, sintaks .py dan tes perilaku preprocessing/metrik sintetis | Tidak melatih model penuh atau menjalankan dataset di CI; status eksekusi diperiksa pada commit terkait |
@@ -42,15 +42,21 @@ mengenali 34/1.659 kasus positif. Hasil ini belum memadai untuk penggunaan klini
 Arsip LR/RF memakai representasi/pembobotan berbeda, bukan pembanding terkontrol.
 Rincian ada di [week 10](../week-10/README.md) dan [week 11](../week-11/README.md).
 
+## Week 12 — hasil lokal
+
+Ambang dipilih pada validasi sebelum uji dibaca. Set uji mencakup 14.978
+kunjungan dari 10.566 pasien. NGBoost memperoleh AP 0,2068 dan F1 0,2606,
+sedangkan Rotation Forest memperoleh AP 0,1573 dan F1 0,2265. Analisis
+kesalahan dipisahkan menurut rentang usia dan jumlah rawat inap sebelumnya.
+Lihat [Week 12](../week-12/README.md).
+
 ## Menunggu pengerjaan
 
 - Review target/cohort dan penyesuaian format BOD jika dosen memberi template.
-- Tuning, CV berbasis pasien, analisis kesalahan rinci serta evaluasi final.
 - Laporan pertama, artikel IMRAD dan materi presentasi dari hasil nyata.
 
 Undangan collaborator dilakukan setelah setup sesuai permintaan pengguna.
-Week 10 dan pipeline awal week 11 tersedia lokal; week 12 serta laporan kuliah
-week 13 belum dinyatakan selesai.
+Week 10–12 memiliki bukti hasil. Laporan pertama menjadi pekerjaan Week 13.
 
 ## Format pembaruan
 
