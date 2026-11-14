@@ -1,6 +1,6 @@
 # Pembuatan PDF
 
-Generator PDF Week 10, Week 11, dan Week 12 berada di folder ini. Ketiganya membaca
+Generator PDF Week 10, Week 11, Week 12, dan Week 13 berada di folder ini. Semuanya membaca
 data/laporan agregat yang sudah tersedia, tanpa melatih ulang model.
 
 Kebutuhan: Python dengan ReportLab dan pypdf, serta font Arial, Times New Roman
@@ -12,9 +12,14 @@ python -m pip install reportlab pypdf
 python scripts/pdf/build_week10.py
 python scripts/pdf/build_week11.py
 python scripts/pdf/build_week12.py
+python scripts/pdf/build_week13.py
 ```
 
 Keluaran ada di `output/pdf/` (lokal, diabaikan Git). Salinan PDF final yang
-dibagikan lewat repo ada di `docs/week-10/`, `docs/week-11/`, dan `docs/week-12/`. Perbarui
+dibagikan lewat repo ada di `docs/week-10/`, `docs/week-11/`, `docs/week-12/`, dan `docs/week-13/`. Perbarui
 salinannya setelah merevisi dan memeriksa hasil generator. Logo cover berada
 di `docs/assets/logo-ukwms.png`.
+
+Week 10 memuat lampiran kode administrasi lengkap. Generator Week 13 juga
+menulis `docs/week-13/laporan-pertama.md` dari konten yang sama dengan PDF.
+Jika perlu mengubah isi laporan, edit generator agar PDF dan Markdown konsisten.

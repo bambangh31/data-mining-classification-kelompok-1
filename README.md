@@ -32,6 +32,39 @@ Sumber dan lisensi ada di [data/README.md](data/README.md).
 
 ## Algoritma
 
+### Revisi dosen: karakteristik, oversampling, dan data train
+
+Arti kode administrasi (termasuk kode meninggal), jumlah tiap kode, dan
+perlakuan cleaning tersedia di [rincian kode kategori](docs/week-10/kode-kategori.md).
+Kamus seluruh kolom ada di [kamus data](docs/week-10/kamus-data.md).
+
+Data **tidak seluruhnya dipakai untuk train**. Dari 101.766 kunjungan,
+1.652 kunjungan berstatus meninggal dikeluarkan; 100.114 sisanya dibagi berdasarkan
+pasien: **70.071 train, 15.065 validation, 14.978 test**. Seluruh bagian train
+digunakan. Pasien yang sama tidak masuk set berbeda.
+
+Eksperimen revisi membandingkan NGBoost tanpa oversampling dengan
+**NGBoost + RandomOverSampler**, memakai parameter dan representasi fitur yang sama.
+Train diseimbangkan menjadi **62.104 kelas 0 dan 62.104 kelas 1**.
+Oversampling hanya pada train; validation/test tetap pada distribusi aslinya.
+Hasil dan batas interpretasi ada di [laporan revisi](results/revisi-dosen/report.md).
+
+Setelah ambang kedua model dipilih dengan aturan F1 maksimum pada validation,
+F1 NGBoost biasa **0,2540** dan NGBoost + ROS **0,2534**. Hasil pada split ini
+hampir sama; oversampling belum menunjukkan keunggulan yang jelas.
+Lihat [perbandingan ambang](results/revisi-dosen/threshold_report.md).
+Angka ini dihitung pada validation yang juga dipakai memilih ambang.
+Gunakan `python -m src.revision_thresholds` untuk menghitung ulang dari prediksi
+lokal tanpa training ulang.
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m src.profile_data
+.\.venv\Scripts\python.exe -m src.revision
+```
+
+### Eksperimen terdahulu (Week 11–12)
+
 NGBoost dan Rotation Forest, dengan DummyClassifier(strategy="prior") sebagai baseline.
 Week 11 membandingkan model pada set validasi. Week 12 mengunci ambang dari
 validasi dan melaporkan hasil pada set uji dengan pasien terpisah.
@@ -46,6 +79,15 @@ dan [hasil week 12](docs/week-12/README.md).
 Dokumen PDF: [Week 10](docs/week-10/week-10-data-mining-kelompok-1.pdf),
 [Week 11](docs/week-11/week-11-data-mining-kelompok-1.pdf), dan
 [Week 12](docs/week-12/week-12-data-mining-kelompok-1.pdf).
+Laporan pertama: [Week 13](docs/week-13/week-13-data-mining-kelompok-1.pdf).
+
+Keempat laporan **dipisah per minggu**. Week 10 mencakup dataset, karakteristik,
+BOD dan algoritma; Week 11 implementasi dan evaluasi awal; Week 12 evaluasi uji
+historis; Week 13 menyatukan hasil serta revisi dosen. Lihat
+[indeks pengumpulan Week 10-13](docs/week-13/README.md).
+Week 13 sudah memiliki laporan pertama; artikel IMRAD Week 15 dan presentasi
+Week 16 belum dibuat. Status ini menunjukkan berkas tersedia, bukan bukti
+pengumpulan di LMS atau persetujuan dosen.
 
 Gunakan Python 3.12, dari root repo:
 

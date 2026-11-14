@@ -50,11 +50,12 @@ def table(rows, widths, small=False):
     header_style = ParagraphStyle(name='TableHeader', parent=body_style, textColor=colors.white, fontName='Arial-Bold')
     data = [[Paragraph(escape(str(value)).replace('\n', '<br/>'), header_style if i == 0 else body_style)
              for value in row] for i, row in enumerate(rows)]
-    result = Table(data, colWidths=[value * mm for value in widths], repeatRows=1, hAlign='LEFT')
+    result = Table(data, colWidths=[value * mm for value in widths], repeatRows=1, hAlign='LEFT', spaceAfter=8)
     result.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), NAVY),
         ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, PALE]),
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('GRID', (0, 0), (-1, -1), .35, colors.HexColor('#d9d9d9')),
         ('LEFTPADDING', (0, 0), (-1, -1), 7), ('RIGHTPADDING', (0, 0), (-1, -1), 7),
         ('TOPPADDING', (0, 0), (-1, -1), 6), ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
         ('LINEBELOW', (0, 0), (-1, 0), .6, NAVY),
@@ -105,6 +106,7 @@ def add_academic_cover(path, week):
         10: 'WEEK 10: DATASET, KARAKTERISTIK DATA, BOD DAN ALGORITMA',
         11: 'WEEK 11: PREPROCESSING, MINING DAN EVALUASI AWAL',
         12: 'WEEK 12: PEMILIHAN AMBANG DAN EVALUASI UJI',
+        13: 'WEEK 13: LAPORAN PERTAMA DAN REVISI DOSEN',
     }[week]
     cover.drawCentredString(width/2, 248*mm, subtitle)
     cover.drawCentredString(width/2, 240*mm, 'KLASIFIKASI READMISSION PASIEN DIABETES')
@@ -250,6 +252,36 @@ for title, link in references:
 story.append(p('Sumber lokal: data/raw/diabetic_data.csv dan IDS_mapping.csv. Statistik dibuat dengan python -m src.profile_data; kode ada di src/profile_data.py. Versi library tercatat pada requirements.txt dan metadata preprocessing.', 'SmallID'))
 story.append(p('SHA-256 CSV asli:\n0689e7ec031237dc63031b938805c48377748761a3b26acab621567afa24df97', 'SmallID'))
 story.append(p('Lampiran berikut berisi kamus seluruh 50 kolom. Missing dihitung dari ? atau kosong pada data asli; kode tidak diketahui dan gender invalid ditangani terpisah saat preprocessing.', 'SmallID'))
+
+page('Revisi karakteristik dan kode data')
+story.append(p('Arti kode status meninggal', 'HeadingID'))
+story.append(table([
+    ['Kode discharge', 'Arti', 'Jumlah'],
+    ['11', 'Expired atau meninggal', '1.642'],
+    ['19', 'Meninggal di rumah; Medicaid, hospice', '8'],
+    ['20', 'Meninggal di fasilitas medis; Medicaid, hospice', '2'],
+    ['21', 'Meninggal, tempat tidak diketahui; Medicaid, hospice', '0'],
+], [30, 115, 25]))
+story.append(p('Sebanyak 1.652 kunjungan dikeluarkan, bukan seluruh riwayat pasien tersebut. Kode hospice 13/14 tetap dipertahankan. Arti kode bergantung pada kolom: 20 pada admission_source_id adalah Not Mapped, bukan meninggal.'))
+story.append(p('Kategori obat, lab, dan target', 'HeadingID'))
+story.append(table([
+    ['Kolom', 'Makna kategori'],
+    ['Status obat', 'No: tidak diresepkan; Steady: dosis tetap; Up: dosis naik; Down: dosis turun. Tidak semua obat memuat seluruh kategori.'],
+    ['change / diabetesMed', 'Ch: perubahan terapi; No: tidak berubah. diabetesMed Yes/No: obat diabetes diresepkan/tidak.'],
+    ['max_glu_serum', 'None: tidak diperiksa; Norm: normal; >200 dan >300: kategori hasil sumber dalam mg/dL.'],
+    ['A1Cresult', 'None: tidak diperiksa; Norm: normal; >7 dan >8: kategori HbA1c sumber dalam persen.'],
+    ['readmitted', 'NO: tidak tercatat rawat inap ulang; >30: lebih dari 30 hari; <30: kurang dari 30 hari. Target biner positif adalah <30.'],
+], [38, 132], small=True))
+story.append(p('Keterangan kode di halaman berikut berasal dari IDS_mapping.csv. Jumlah dihitung pada seluruh data asli. Kode dengan jumlah nol tetap dicantumkan. Kode nominal tidak diurutkan sebagai besaran numerik.', 'SmallID'))
+admin = csv_rows('admin_code_dictionary.csv')
+for column in ['admission_type_id', 'discharge_disposition_id', 'admission_source_id']:
+    records = [r for r in admin if r['kolom'] == column]
+    for start in range(0, len(records), 15):
+        page('Rincian kode administrasi', column + f' | entri {start+1}-{min(start+15, len(records))} dari {len(records)}')
+        story.append(table([['Kode', 'Arti dalam sumber', 'Jumlah', 'Perlakuan']] + [
+            [r['kode'], r['arti_sumber'], r['jumlah_data_asli'], r['perlakuan']]
+            for r in records[start:start+15]], [15, 86, 20, 49], small=True))
+        story.append(p('Kode tidak diketahui diubah menjadi missing, bukan menghapus baris. Status meninggal pada discharge mengecualikan kunjungan. Kategori lain dipertahankan untuk encoding.', 'SmallID'))
 
 dictionary = csv_rows('data_dictionary.csv')
 for number, start in enumerate(range(0, len(dictionary), 13), 1):

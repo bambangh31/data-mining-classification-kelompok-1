@@ -91,6 +91,11 @@ atau kesiapan penggunaan klinis dari skor tugas kuliah.
 
 ## Algoritma yang dipakai
 
+**Pembaruan revisi dosen:** arti lengkap kode dan kategori ada pada
+[rincian kode](kode-kategori.md). Eksperimen tambahan NGBoost dengan dan tanpa
+random oversampling ada di [laporan revisi](../../results/revisi-dosen/report.md).
+Konfigurasi di bawah mencatat eksperimen awal tanpa oversampling.
+
 | Algoritma | Alasan dan konfigurasi awal |
 |---|---|
 | NGBoost | NGBClassifier dengan distribusi Bernoulli; natural gradient boosting untuk probabilitas risiko. 150 estimator, learning_rate=0,03, minibatch_frac=0,75, base tree depth=3 dan min_samples_leaf=20 |

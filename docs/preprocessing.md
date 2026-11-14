@@ -21,6 +21,13 @@ Kode administrasi mengikuti `IDS_mapping.csv` pada arsip asli.
 
 ## Target dan cohort awal
 
+Arti setiap kode dan jumlahnya pada data asli tersedia di
+[rincian kode kategori](week-10/kode-kategori.md). Kode meninggal pada
+`discharge_disposition_id`: 11 = Expired; 19 = meninggal di rumah (Medicaid,
+hospice); 20 = meninggal di fasilitas medis (Medicaid, hospice); 21 = meninggal
+dengan tempat tidak diketahui (Medicaid, hospice). Kode hospice 13/14 tetap
+dipertahankan karena tidak otomatis menunjukkan meninggal.
+
 - Default binary: `<30=1`, `NO=0`, `>30=0`. Kelas 0 berarti tidak tercatat
   readmission kurang dari 30 hari, bukan tidak pernah readmission. Batas label
   asli dipertahankan, tidak diganti menjadi <=30.
@@ -30,6 +37,24 @@ Kode administrasi mengikuti `IDS_mapping.csv` pada arsip asli.
   dari pasien tersebut tetap dipertahankan. Status hospice/transfer lain tetap ada
   dan menjadi keterbatasan cohort. Target/cohort perlu disepakati kelompok.
 - Semua kunjungan lain dipertahankan. Pasien berulang tidak boleh masuk set berbeda.
+
+### Jawaban tentang pemakaian data train
+
+Seluruh 101.766 baris dibaca untuk pemeriksaan dan cleaning. Setelah 1.652
+kunjungan meninggal dikeluarkan, seluruh 100.114 baris yang tersisa masuk salah
+satu set: 70.071 train, 15.065 validation, 14.978 test. Proporsi sekitar
+70/15/15 berlaku pada pasien, sehingga persentase baris tidak harus tepat sama.
+Seluruh train dipakai untuk fit model; validation dan test tidak ikut fit.
+Tidak ada subset train permanen untuk mempercepat eksperimen. Parameter NGBoost
+`minibatch_frac=0.75` berarti setiap iterasi mengambil sampel acak 75% dari
+kumpulan training (train asli atau hasil ROS); seluruh kumpulan tetap tersedia.
+
+Revisi oversampling menggunakan RandomOverSampler hanya pada representasi train
+setelah SVD/scaling di-fit pada train asli. Kelas 0 berjumlah 62.104 dan kelas 1
+7.967; kelas 1 diduplikasi menjadi 62.104. Total 124.208 baris training sesudah
+oversampling berasal dari 70.071 kunjungan asli, bukan tambahan pasien.
+Fitur/target validation dan test tidak di-resample. Lihat
+[hasil revisi](../results/revisi-dosen/report.md).
 
 ## Cleaning
 
