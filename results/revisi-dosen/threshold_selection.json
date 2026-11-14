@@ -1,0 +1,55 @@
+{
+  "selected_on": "validation",
+  "evaluated_on": "same validation used for selection",
+  "test_evaluated": false,
+  "refit": false,
+  "rule": "maximize positive-class F1; prefer highest threshold on ties",
+  "baseline_threshold": 0.5,
+  "input_sha256": {
+    "experiment.json": "2eaf44f111db0b000b5138f3744e16773794c225300ccf17ed51d7a0d94d2df9",
+    "y_validation.csv": "6d55d50d9537f7c485bb03a6fecde162bd968214eaf861e88c8b25159dcfca88",
+    "validation_predictions_Dummy_prior.csv": "be315569be6749f56d438715d60e67a8b83b4498e7561c114106c0b3d7ea5584",
+    "validation_predictions_NGBoost.csv": "8b2ae27897cbf728e34247fdf60009faf1bf731d376dd3eacb33f519c1781f2c",
+    "validation_predictions_NGBoost_ROS.csv": "2a0be280d8c61c9f0ddd8cdcb49bc3b7d193b19dd19a154fbfd5f35c4ac3c49c"
+  },
+  "models": {
+    "NGBoost": {
+      "threshold": 0.1373819200546981,
+      "candidate_count": 15063,
+      "validation_at_selected_threshold": {
+        "accuracy": 0.7773647527381348,
+        "balanced_accuracy": 0.5875772249198469,
+        "precision": 0.20126894606979204,
+        "recall": 0.34418324291742014,
+        "f1": 0.2540035587188612,
+        "roc_auc": 0.6414572226932836,
+        "average_precision": 0.19943754228287575,
+        "brier_score": 0.09483752651017302,
+        "log_loss": 0.3329331008285855,
+        "tn": 11140,
+        "fp": 2266,
+        "fn": 1088,
+        "tp": 571
+      }
+    },
+    "NGBoost_ROS": {
+      "threshold": 0.5605396611674692,
+      "candidate_count": 15064,
+      "validation_at_selected_threshold": {
+        "accuracy": 0.7746432127447727,
+        "balanced_accuracy": 0.5873685070974402,
+        "precision": 0.1994459833795014,
+        "recall": 0.3471971066907776,
+        "f1": 0.2533538596877062,
+        "roc_auc": 0.6425531486310997,
+        "average_precision": 0.20006528012425737,
+        "brier_score": 0.2255147867832755,
+        "log_loss": 0.6433832420273077,
+        "tn": 11094,
+        "fp": 2312,
+        "fn": 1083,
+        "tp": 576
+      }
+    }
+  }
+}

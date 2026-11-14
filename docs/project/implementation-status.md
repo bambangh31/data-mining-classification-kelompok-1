@@ -1,6 +1,6 @@
 # Status implementasi Classification
 
-Pembaruan: 9 November 2026. Status berikut membedakan fondasi repo dari
+Pembaruan: 14 November 2026. Status berikut membedakan fondasi repo dari
 pekerjaan analisis yang belum dilakukan.
 
 ## Sudah tersedia
@@ -52,11 +52,19 @@ Lihat [Week 12](../week-12/README.md).
 
 ## Menunggu pengerjaan
 
+Laporan pertama Week 13 sudah tersedia dalam PDF tersendiri dan sumber Markdown
+di [Week 13](../week-13/README.md). PDF Week 10 juga diperbarui dengan arti,
+jumlah dan perlakuan kode administrasi. Week 10, 11, 12, 13 dipisah dalam
+empat folder. Revisi NGBoost + ROS dan penyesuaian ambang dicatat terpisah;
+F1 validation sesudah pemilihan ambang adalah 0,2540 (NGBoost) dan 0,2534 (ROS).
+Semua 16 tes lulus lokal; ini tidak menyatakan CI pada commit baru sudah lulus.
+
 - Review target/cohort dan penyesuaian format BOD jika dosen memberi template.
-- Laporan pertama, artikel IMRAD dan materi presentasi dari hasil nyata.
+- Artikel IMRAD Week 15 dan materi presentasi Week 16 dari hasil nyata.
 
 Undangan collaborator dilakukan setelah setup sesuai permintaan pengguna.
-Week 10–12 memiliki bukti hasil. Laporan pertama menjadi pekerjaan Week 13.
+Week 10–13 memiliki dokumen terpisah dan bukti hasil. Pengumpulan ke LMS dan
+persetujuan dosen belum diverifikasi.
 
 ## Format pembaruan
 

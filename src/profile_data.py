@@ -1,5 +1,6 @@
 """Profil week 10: python -m src.profile_data."""
 
+import csv
 import json
 from pathlib import Path
 
@@ -9,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from src.preprocess import IDS, NUMERIC, ROOT, TARGET
+from src.preprocess import DEATH_CODES, IDS, NUMERIC, ROOT, TARGET, UNKNOWN_CODES
 
 
 DESCRIPTIONS = {
@@ -52,6 +53,29 @@ def md_table(frame):
     return "\n".join(rows)
 
 
+def admin_code_dictionary(raw, mapping_path):
+    """Baca tiga tabel dalam IDS_mapping.csv tanpa menganggap NULL sebagai NA."""
+    rows, column = [], None
+    with mapping_path.open(encoding="utf-8", newline="") as stream:
+        for cells in csv.reader(stream):
+            if not cells or not cells[0].strip():
+                continue
+            code, description = cells[0].strip(), cells[1].strip()
+            if code in UNKNOWN_CODES:
+                column = code
+                continue
+            if column is None:
+                raise ValueError("Header mapping administrasi tidak ditemukan.")
+            action = "Dipertahankan sebagai kategori"
+            if column == "discharge_disposition_id" and code in DEATH_CODES:
+                action = "Kunjungan dikeluarkan: meninggal"
+            elif code in UNKNOWN_CODES[column]:
+                action = "Diubah menjadi missing"
+            rows.append({"kolom": column, "kode": code, "arti_sumber": description,
+                         "jumlah_data_asli": int(raw[column].eq(code).sum()), "perlakuan": action})
+    return pd.DataFrame(rows)
+
+
 def main():
     raw = pd.read_csv(ROOT / "data/raw/diabetic_data.csv", dtype=str, keep_default_na=False)
     clean = raw.apply(lambda col: col.str.strip()).replace({"?": np.nan, "": np.nan})
@@ -67,10 +91,55 @@ def main():
                            "tipe_analisis": "numerik" if column in NUMERIC else "kategorikal",
                            "deskripsi": desc, "unik_nonmissing": clean[column].nunique(),
                            "missing_jumlah": int(clean[column].isna().sum()),
-                           "missing_persen": round(float(clean[column].isna().mean() * 100), 3)})
+                           "missing_persen": round(float(clean[column].isna().mean() * 100), 3),
+                           "nilai_aktual_atau_contoh": ", ".join(sorted(clean[column].dropna().unique())[:10])
+                           + ("; ... (contoh, bukan seluruh nilai)" if clean[column].nunique() > 10 else "")
+                           if column not in NUMERIC + IDS else
+                           (f"{pd.to_numeric(clean[column]).min()} sampai {pd.to_numeric(clean[column]).max()}"
+                            if column in NUMERIC else "ID unik; tidak digunakan sebagai fitur")})
     dictionary = pd.DataFrame(dictionary)
     dictionary.to_csv(output / "data_dictionary.csv", index=False)
-    (docs / "kamus-data.md").write_text("# Kamus data\n\nDihitung dari CSV asli. Missing = tanda ? atau kosong; None pada tes lab dipertahankan.\n\n" + md_table(dictionary) + "\n", encoding="utf-8")
+    (docs / "kamus-data.md").write_text("# Kamus data\n\nDihitung dari CSV asli. Missing = tanda ? atau kosong; None pada tes lab dipertahankan.\n\n"
+        "Arti kode, jumlah tiap kode dan perlakuan cleaning ada pada [rincian kode](kode-kategori.md).\n\n"
+        + md_table(dictionary) + "\n", encoding="utf-8")
+    codes = admin_code_dictionary(raw, ROOT / "data/raw/IDS_mapping.csv")
+    codes.to_csv(output / "admin_code_dictionary.csv", index=False)
+    notes = ["# Arti kode dan kategori data", "",
+             "Sumber kode: [IDS_mapping.csv](../../data/raw/IDS_mapping.csv) dari arsip "
+             "[UCI](https://archive.ics.uci.edu/dataset/296/diabetes-130-us-hospitals-for-years-1999-2008). "
+             "Arti sumber dipertahankan; jumlah dihitung dari seluruh CSV asli sebelum cleaning. "
+             "Kode dengan jumlah 0 tetap dicantumkan karena tersedia dalam mapping.", "",
+             "## Status meninggal dan pemilihan cohort", "",
+             "`discharge_disposition_id`: **11 = Expired (meninggal)**; "
+             "**19 = meninggal di rumah, Medicaid/hospice**; "
+             "**20 = meninggal di fasilitas medis, Medicaid/hospice**; "
+             "**21 = meninggal, lokasi tidak diketahui, Medicaid/hospice**. "
+             "Keempat kode mengecualikan kunjungan tersebut karena sasaran adalah readmission setelah keluar hidup. "
+             "Kunjungan terdahulu pasien tetap dipertahankan. Kode 13/14 berarti hospice, tidak otomatis meninggal.", "",
+             "Kode berlaku per kolom: kode 20 pada admission_source_id berarti Not Mapped, bukan meninggal. "
+             "Kode administrasi merupakan kategori nominal, bukan angka berurutan.", ""]
+    for column, group in codes.groupby("kolom", sort=False):
+        notes += [f"## {column}", "", md_table(group.drop(columns="kolom")), ""]
+    notes += ["## Kategori lain dan target", "",
+              "- `readmitted`: NO = tidak tercatat rawat inap ulang; >30 = rawat inap ulang lebih dari 30 hari; "
+              "<30 = kurang dari 30 hari. Target biner: <30 menjadi 1; NO dan >30 menjadi 0. "
+              "Kelas 0 bukan berarti tidak pernah rawat inap ulang. Label sumber dipertahankan apa adanya.",
+              "- Status obat: No = tidak diresepkan; Steady = dosis tetap; Up = dosis dinaikkan; Down = dosis diturunkan. "
+              "Tidak semua obat memiliki keempat kategori dalam CSV.",
+              "- `change`: Ch = ada perubahan terapi diabetes; No = tidak ada. "
+              "`diabetesMed`: Yes = obat diabetes diresepkan; No = tidak.",
+              "- `max_glu_serum`: None = tidak diperiksa; Norm = kategori normal; >200 dan >300 = kategori hasil "
+              "glukosa sesuai label sumber (mg/dL). `A1Cresult`: None = tidak diperiksa; Norm = kategori normal; "
+              ">7 dan >8 = kategori HbA1c sesuai label sumber (%). None bukan missing CSV.",
+              "- `age`: interval tahun [a,b) mencakup a sampai sebelum b, misalnya [70-80). "
+              "`weight`: kelompok berat dalam pound; kolom ini dikeluarkan karena missing >50% pada train.",
+              "- `gender`: Male, Female, Unknown/Invalid; yang terakhir menjadi missing. "
+              "`race`: Caucasian, AfricanAmerican, Asian, Hispanic, Other; ? menjadi missing.",
+              "- `diag_1/2/3`: kode ICD-9 diagnosis utama/kedua/ketiga; angka dan kode E/V diperlakukan sebagai kategori. "
+              "`payer_code` dan `medical_specialty` juga kategori; mapping administrasi tidak menjelaskan semua singkatan pembayar.",
+              "- Delapan fitur numerik berisi hitungan kecuali time_in_hospital (hari). "
+              "Rentang aktual dan contoh kategori per kolom tersedia di [kamus data](kamus-data.md).", ""]
+    (docs / "kode-kategori.md").write_text("\n".join(notes), encoding="utf-8")
     # Contoh aktual subset kolom; ID pasien/kunjungan sengaja tidak ditampilkan.
     preview_columns = ["age", "gender", "time_in_hospital", "num_medications", "number_inpatient", "A1Cresult", "readmitted"]
     preview = raw[preview_columns].head(6)
