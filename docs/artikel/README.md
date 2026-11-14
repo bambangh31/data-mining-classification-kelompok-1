@@ -16,7 +16,8 @@ tahap awal dibedakan dari hasil validation revisi oversampling. Hasil ambang
 optimal revisi diukur pada validation yang juga dipakai memilih ambang,
 sehingga tidak diklaim sebagai evaluasi independen.
 
-Format saat ini adalah artikel akademik satu kolom tanpa cover laporan.
+Format saat ini adalah artikel akademik satu kolom tanpa cover laporan,
+dengan abstrak dan paragraf isi rata kanan-kiri (justify).
 Template jurnal/dosen, batas halaman, dan gaya sitasi khusus belum diberikan;
 penyesuaian format dapat dilakukan jika ada ketentuan tambahan. Isi IMRAD
 sudah lengkap, tetapi belum menyatakan persetujuan dosen atau pengumpulan LMS.

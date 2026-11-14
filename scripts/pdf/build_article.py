@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
@@ -99,13 +99,16 @@ def render_markdown(source, destination):
     pdfmetrics.registerFont(TTFont("ArticleArial", "C:/Windows/Fonts/arial.ttf"))
     pdfmetrics.registerFont(TTFont("ArticleArialBold", "C:/Windows/Fonts/arialbd.ttf"))
     body = ParagraphStyle("ArticleBody", fontName="ArticleArial", fontSize=10.5, leading=15,
-                          spaceAfter=8, textColor=colors.black, allowWidows=0, allowOrphans=0)
+                          spaceAfter=8, textColor=colors.black, allowWidows=0, allowOrphans=0,
+                          alignment=TA_JUSTIFY)
     title = ParagraphStyle("ArticleTitle", parent=body, fontName="ArticleArialBold", fontSize=17,
                            leading=22, alignment=TA_CENTER, spaceAfter=14, keepWithNext=True)
     heading = ParagraphStyle("ArticleHeading", parent=body, fontName="ArticleArialBold", fontSize=13,
-                             leading=17, spaceBefore=12, spaceAfter=8, keepWithNext=True)
+                             leading=17, spaceBefore=12, spaceAfter=8, keepWithNext=True,
+                             alignment=TA_LEFT)
     subheading = ParagraphStyle("ArticleSubheading", parent=heading, fontSize=11, leading=15, spaceBefore=9)
-    small = ParagraphStyle("ArticleSmall", parent=body, fontSize=9, leading=12, spaceAfter=7)
+    small = ParagraphStyle("ArticleSmall", parent=body, fontSize=9, leading=12, spaceAfter=7,
+                           alignment=TA_LEFT)
     caption = ParagraphStyle("ArticleCaption", parent=small, keepWithNext=True, spaceBefore=6, spaceAfter=6)
     author = ParagraphStyle("ArticleAuthor", parent=small, alignment=TA_CENTER, keepWithNext=True)
     cell = ParagraphStyle("ArticleCell", parent=small, fontSize=8.5, leading=11.5, spaceAfter=0)
@@ -174,7 +177,13 @@ def render_markdown(source, destination):
             style = caption if line.startswith("Tabel ") else small if re.match(r"\[\d+\]", line) else body
             if line.startswith(("Bambang Herlambang", "Program Studi")):
                 style = author
-            story.append(paragraph(line, style))
+            if style is body and "https://" in line:
+                # URL panjang pada baris sendiri mencegah celah kata besar saat justify.
+                for part in re.split(r"(https?://\S+)", line):
+                    if part.strip():
+                        story.append(paragraph(part.strip(), small if part.startswith("http") else body))
+            else:
+                story.append(paragraph(line, style))
 
     def footer(canvas, doc):
         canvas.saveState()
