@@ -85,8 +85,9 @@ Keempat laporan **dipisah per minggu**. Week 10 mencakup dataset, karakteristik,
 BOD dan algoritma; Week 11 implementasi dan evaluasi awal; Week 12 evaluasi uji
 historis; Week 13 menyatukan hasil serta revisi dosen. Lihat
 [indeks pengumpulan Week 10-13](docs/week-13/README.md).
-Week 13 sudah memiliki laporan pertama; artikel IMRAD Week 15 dan presentasi
-Week 16 belum dibuat. Status ini menunjukkan berkas tersedia, bukan bukti
+Week 14 sudah memiliki [rekap percobaan tambahan](docs/week-14/README.md), dan
+Week 15 sudah memiliki [artikel bahasa Indonesia dengan IMRAD](docs/artikel/README.md).
+Presentasi Week 16 belum dibuat. Status ini menunjukkan berkas tersedia, bukan bukti
 pengumpulan di LMS atau persetujuan dosen.
 
 Gunakan Python 3.12, dari root repo:

@@ -23,3 +23,13 @@ di `docs/assets/logo-ukwms.png`.
 Week 10 memuat lampiran kode administrasi lengkap. Generator Week 13 juga
 menulis `docs/week-13/laporan-pertama.md` dari konten yang sama dengan PDF.
 Jika perlu mengubah isi laporan, edit generator agar PDF dan Markdown konsisten.
+
+Artikel Week 15 dan rekap percobaan Week 14 memakai sumber Markdown:
+
+```powershell
+python scripts/pdf/build_article.py
+```
+
+Generator ini memeriksa tabel artikel terhadap metadata/CSV dan mencatat hash
+sumber di `docs/artikel/sumber-angka.json`. Hasil final setelah pemeriksaan
+visual disalin dari `output/pdf/` ke `docs/artikel/` dan `docs/week-14/`.
