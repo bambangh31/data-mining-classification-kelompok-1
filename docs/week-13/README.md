@@ -19,8 +19,9 @@ yang juga dipakai memilih ambang; bukan hasil uji independen.
 
 Hasil test Week 12 berasal dari model historis, bukan model revisi.
 Laporan pertama mempertahankan catatan tahap Week 13 sebelum penulisan artikel.
-Status terbaru: [artikel IMRAD Week 15](../artikel/README.md) sudah tersedia dan
-[rekap Week 14](../week-14/README.md) sudah dipisah. Slide presentasi belum dibuat.
+Status terbaru: [artikel IMRAD untuk Week 15](../artikel/README.md) sudah disiapkan
+lebih awal. Week 14 belum dikerjakan; eksperimen oversampling yang tersedia
+merupakan revisi laporan Week 13. Slide presentasi belum dibuat.
 Laporan tersedia di repository; ini tidak menyatakan pengumpulan ke LMS atau
 persetujuan dosen sudah dilakukan.
 

@@ -1,4 +1,4 @@
-"""Render sumber Markdown Week 14 dan artikel IMRAD tanpa training ulang."""
+"""Render sumber Markdown artikel IMRAD tanpa training ulang."""
 
 import csv
 import hashlib
@@ -205,4 +205,3 @@ def render_markdown(source, destination):
 if __name__ == "__main__":
     check_article_tables()
     render_markdown(ROOT / "docs/artikel/artikel-imrad.md", ROOT / "output/pdf/week-15-artikel-imrad-kelompok-1.pdf")
-    render_markdown(ROOT / "docs/week-14/percobaan-tambahan.md", ROOT / "output/pdf/week-14-percobaan-tambahan-kelompok-1.pdf")
