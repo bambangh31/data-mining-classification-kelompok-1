@@ -1,6 +1,6 @@
 # Week 11 — pipeline awal preprocessing, mining dan evaluasi
 
-Dokumen siap baca: [PDF week 11](week-11-data-mining-kelompok-1.pdf).
+Dokumen siap baca: [PDF week 11](../laporan/week-11-data-mining-kelompok-1.pdf).
 
 Tanggal kelas dan eksekusi lokal: 3 November 2026. Tahap ini menghubungkan
 pipeline awal untuk tugas coding week 11–12; tuning dan evaluasi final bukan

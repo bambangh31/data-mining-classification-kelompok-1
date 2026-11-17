@@ -60,7 +60,9 @@ Artikel memisahkan hasil test tahap awal dari hasil validation
 revisi, dan tabel numeriknya dicocokkan otomatis terhadap sumber.
 
 Laporan pertama Week 13 sudah tersedia dalam PDF tersendiri dan sumber Markdown
-di [Week 13](../week-13/README.md). PDF Week 10 juga diperbarui dengan arti,
+di [Week 13](../week-13/README.md). Empat PDF final Week 10-13 dikumpulkan
+di [docs/laporan](../laporan/README.md); sumber tiap minggu tetap terpisah.
+PDF Week 10 juga diperbarui dengan arti,
 jumlah dan perlakuan kode administrasi. Week 10, 11, 12, 13 dipisah dalam
 empat folder. Revisi NGBoost + ROS dan penyesuaian ambang dicatat terpisah;
 F1 validation sesudah pemilihan ambang adalah 0,2540 (NGBoost) dan 0,2534 (ROS).

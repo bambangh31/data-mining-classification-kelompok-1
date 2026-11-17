@@ -1,5 +1,7 @@
 # Dokumen proyek
 
+- [Folder laporan pengumpulan](laporan/README.md): empat PDF final Week 10-13.
+
 - [Week 10](week-10/README.md): dataset, contoh, karakteristik, BOD dan algoritma.
 - [Week 11](week-11/README.md): pipeline, percobaan awal dan evaluasi validation.
 - [Week 12](week-12/README.md): ambang terkunci, evaluasi uji historis dan analisis kesalahan.
@@ -11,8 +13,8 @@
 
 - `project/`: kalender kelas, pembagian kontribusi, dan review kelengkapan setup.
 - `week-10/`: dataset, karakteristik, BOD, dan rancangan metode.
-- `week-11/`, `week-12/`, `week-13/`: laporan PDF terpisah per minggu beserta sumber.
-- `laporan/`: laporan pertama dan lampiran relevan.
+- `week-11/`, `week-12/`, `week-13/`: sumber dan bahan pendukung tiap minggu.
+- `laporan/`: PDF final Week 10-13 dalam satu folder, tetap terpisah per minggu.
 - `artikel/`: artikel bahasa Indonesia dengan struktur IMRAD.
 - `presentasi/`: slide serta bahan pendukung presentasi.
 

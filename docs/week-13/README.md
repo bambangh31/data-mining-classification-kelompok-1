@@ -3,7 +3,7 @@
 Laporan pertama sudah disusun dari hasil nyata Week 10-12 serta revisi dosen.
 Pembaruan: 14 November 2026. Dokumen ini terpisah dari laporan tiap minggu.
 
-- [PDF laporan pertama](week-13-data-mining-kelompok-1.pdf)
+- [PDF laporan pertama](../laporan/week-13-data-mining-kelompok-1.pdf)
 - [Sumber isi yang dapat diedit](laporan-pertama.md)
 - [Generator PDF dan Markdown](../../scripts/pdf/build_week13.py)
 
@@ -29,10 +29,10 @@ persetujuan dosen sudah dilakukan.
 
 | Minggu | Keluaran | Lokasi PDF |
 |---|---|---|
-| 10 | Dataset, karakteristik, BOD dan algoritma | [Week 10](../week-10/week-10-data-mining-kelompok-1.pdf) |
-| 11 | Preprocessing, mining dan evaluasi awal | [Week 11](../week-11/week-11-data-mining-kelompok-1.pdf) |
-| 12 | Pemilihan ambang, evaluasi uji dan analisis kesalahan | [Week 12](../week-12/week-12-data-mining-kelompok-1.pdf) |
-| 13 | Laporan pertama yang menyatukan hasil dan revisi | [Week 13](week-13-data-mining-kelompok-1.pdf) |
+| 10 | Dataset, karakteristik, BOD dan algoritma | [Week 10](../laporan/week-10-data-mining-kelompok-1.pdf) |
+| 11 | Preprocessing, mining dan evaluasi awal | [Week 11](../laporan/week-11-data-mining-kelompok-1.pdf) |
+| 12 | Pemilihan ambang, evaluasi uji dan analisis kesalahan | [Week 12](../laporan/week-12-data-mining-kelompok-1.pdf) |
+| 13 | Laporan pertama yang menyatukan hasil dan revisi | [Week 13](../laporan/week-13-data-mining-kelompok-1.pdf) |
 
 ## Membuat ulang
 
@@ -44,4 +44,4 @@ python scripts/pdf/build_week13.py
 ```
 
 PDF dibuat di `output/pdf/`; setelah render dan pemeriksaan visual, salin
-hasil final ke folder ini. Markdown dibuat langsung di folder ini.
+hasil final ke `docs/laporan/`. Markdown dibuat langsung di folder ini.
