@@ -110,6 +110,7 @@ def count(value):
 
 
 toc = TableOfContents()
+toc.dotsMinLevel = 0
 toc.levelStyles = [ParagraphStyle('ReportTOC', fontName='TimesBody', fontSize=12, leading=19,
                                   leftIndent=0, firstLineIndent=0, spaceBefore=4)]
 story = [p('Daftar isi', 'TitleID'), toc]
