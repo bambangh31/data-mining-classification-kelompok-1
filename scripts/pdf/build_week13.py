@@ -6,6 +6,7 @@ from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
 from reportlab.platypus.tableofcontents import TableOfContents, drawPageNumbers
 from reportlab.graphics.shapes import Drawing, Rect, String, Line, Polygon
 from reportlab.graphics import renderSVG
+from week13_details import add_details
 
 style_source = Path(__file__).with_name("build_week10.py").read_text(encoding="utf-8")
 exec(compile(style_source.split("story = []")[0], "<shared-pdf-styles>", "exec"))
@@ -36,7 +37,7 @@ styles['HeadingID'].keepWithNext = True
 
 
 def table(rows, widths, small=False):
-    body = ParagraphStyle('ReportCell', parent=styles['SmallID'], fontSize=10, leading=13,
+    body = ParagraphStyle('ReportCell', parent=styles['SmallID'], fontSize=9.5, leading=12,
                           alignment=TA_LEFT, firstLineIndent=0, spaceAfter=0)
     head = ParagraphStyle('ReportCellHead', parent=body, fontName='TimesBody-Bold')
     data = [[Paragraph(escape(str(v)).replace('\n', '<br/>'), head if i == 0 else body)
@@ -47,19 +48,23 @@ def table(rows, widths, small=False):
         ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e8e8e8')),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('LEFTPADDING', (0, 0), (-1, -1), 6), ('RIGHTPADDING', (0, 0), (-1, -1), 6),
-        ('TOPPADDING', (0, 0), (-1, -1), 6), ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+        ('TOPPADDING', (0, 0), (-1, -1), 4), ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
     ]))
     return result
 
 
 class ReportDoc(SimpleDocTemplate):
+    front_pages = 1
+
     def afterFlowable(self, flowable):
         if isinstance(flowable, Paragraph) and flowable.style.name in ('TitleID', 'HeadingID'):
             title = flowable.getPlainText()
+            if title == 'Ringkasan laporan pertama':
+                self.front_pages = self.page - 1
             key = 'section-' + hashlib.sha256(title.encode()).hexdigest()[:12]
             self.canv.bookmarkPage(key)
             level = 0 if flowable.style.name == 'TitleID' else 1
-            self.notify('TOCEntry', (level, title, self.page - 1, key))
+            self.notify('TOCEntry', (level, title, self.page - self.front_pages, key))
 
 
 class ReportTOC(TableOfContents):
@@ -92,10 +97,12 @@ class ReportTOC(TableOfContents):
         return self.width, self.height
 
 
-def report_footer(canvas, doc):
+def report_footer(canvas, doc, page_number):
     canvas.saveState()
     canvas.setFont('TimesBody', 10)
-    canvas.drawCentredString(A4[0]/2, 13*mm, 'i' if doc.page == 1 else str(doc.page-1))
+    romans = ('i', 'ii', 'iii', 'iv', 'v', 'vi')
+    label = romans[page_number-1] if page_number <= doc.front_pages else str(page_number-doc.front_pages)
+    canvas.drawCentredString(A4[0]/2, 13*mm, label)
     canvas.restoreState()
 
 
@@ -158,20 +165,20 @@ markdown = ["# Laporan pertama Week 13", "", "Klasifikasi rawat inap ulang pasie
 
 chapter_index = 0
 subsection_index = 0
+current_section = None
 
 
 def section(title):
-    global chapter_index, subsection_index
+    global chapter_index, subsection_index, current_section
+    if current_section is not None:
+        add_details(current_section, globals())
+    current_section = title
     subsection_index = 0
     original = title
     if not title.startswith('Ringkasan'):
         chapter_index += 1
         title = f'{chapter_index}. {title}'
-    if original in ('Ringkasan laporan pertama', 'Pendahuluan', 'Daftar pustaka'):
-        page(title)
-    else:
-        story.append(Spacer(1, 5*mm))
-        story.append(p(title, 'TitleID'))
+    page(title)
     markdown.extend(["## " + title, ""])
 
 
@@ -199,12 +206,16 @@ table_titles = [
     'Bukti pemeriksaan', 'Berkas implementasi', 'Perintah reproduksi',
 ]
 table_index = 0
+original_table_index = 0
 styles.add(ParagraphStyle('CaptionID', parent=styles['SmallID'], keepWithNext=True, spaceBefore=5, spaceAfter=6))
 
 
-def tab(rows, widths, small=True):
-    global table_index
-    caption = f'Tabel {table_index+1}. {table_titles[table_index]}'
+def tab(rows, widths, small=True, title=None):
+    global table_index, original_table_index
+    if title is None:
+        title = table_titles[original_table_index]
+        original_table_index += 1
+    caption = f'Tabel {table_index+1}. {title}'
     table_index += 1
     story.append(p(caption,'CaptionID'))
     markdown.extend([caption, ''])
@@ -454,15 +465,19 @@ for text in [
     "Duan dkk. (2020). NGBoost Natural Gradient Boosting for Probabilistic Prediction. ICML. https://proceedings.mlr.press/v119/duan20a.html",
     "Rodriguez, Kuncheva dan Alonso (2006). Rotation Forest A New Classifier Ensemble Method. https://www.lucykuncheva.co.uk/papers/jrlkcatpami06.pdf",
     "Dokumentasi scikit-learn 1.7. Average precision dan precision-recall. https://scikit-learn.org/1.7/modules/generated/sklearn.metrics.average_precision_score.html",
-    "Dokumentasi imbalanced-learn. RandomOverSampler. https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.RandomOverSampler.html",
+    "Dokumentasi imbalanced-learn. RandomOverSampler; metode sampling dengan pengembalian. Versi eksperimen 0.14.0. https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.RandomOverSampler.html (diakses 17 November 2026).",
+    "Dokumentasi aeon 1.6.0. RotationForestClassifier; atribut kontinu dan parameter implementasi. https://www.aeon-toolkit.org/en/stable/api_reference/auto_generated/aeon.classification.sklearn.RotationForestClassifier.html (diakses 17 November 2026).",
+    "Dokumentasi scikit-learn 1.7. GroupShuffleSplit; pembagian berbasis kelompok. https://scikit-learn.org/1.7/modules/generated/sklearn.model_selection.GroupShuffleSplit.html (diakses 17 November 2026).",
+    "Dokumentasi scikit-learn 1.7. OneHotEncoder; kategori langka dan kategori baru. https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.OneHotEncoder.html (diakses 17 November 2026).",
+    "Dokumentasi scikit-learn 1.7. TruncatedSVD; proyeksi matriks sparse. https://scikit-learn.org/1.7/modules/generated/sklearn.decomposition.TruncatedSVD.html (diakses 17 November 2026).",
 ]:
     paragraph(text, True)
 
-assert table_index == len(table_titles)
+assert original_table_index == len(table_titles)
 doc = ReportDoc(str(OUT), pagesize=A4, rightMargin=23*mm, leftMargin=23*mm,
                         topMargin=20*mm, bottomMargin=22*mm,
                         title="Laporan pertama Week 13 Data Mining Kelompok 1", author="Kelompok 1")
-doc.multiBuild(story, onFirstPage=report_footer, onLaterPages=report_footer)
+doc.multiBuild(story)
 # Cover khusus laporan lengkap; cover laporan minggu lain tetap terpisah.
 cover_buffer = BytesIO()
 cover_canvas = pdfcanvas.Canvas(cover_buffer, pagesize=A4)
@@ -490,6 +505,13 @@ for y,text in [(58,'PROGRAM STUDI INFORMATIKA'),(51,'FAKULTAS TEKNIK'),
 cover_canvas.save()
 cover_buffer.seek(0)
 final_reader = PdfReader(OUT)
+for page_number, body_page in enumerate(final_reader.pages, 1):
+    footer_buffer = BytesIO()
+    footer_canvas = pdfcanvas.Canvas(footer_buffer, pagesize=A4)
+    report_footer(footer_canvas, doc, page_number)
+    footer_canvas.save()
+    footer_buffer.seek(0)
+    body_page.merge_page(PdfReader(footer_buffer).pages[0])
 writer = PdfWriter()
 writer.append(PdfReader(cover_buffer))
 writer.append(final_reader)
@@ -498,5 +520,29 @@ with OUT.open('wb') as stream:
     writer.write(stream)
 (DEST / "laporan-pertama.md").write_text("\n".join(markdown), encoding="utf-8")
 reader = PdfReader(OUT)
-assert all(len(page.extract_text()) > 200 for page in reader.pages)
+assert all(len(page.extract_text()) > 100 for page in reader.pages)
+source_paths = sorted({
+    'results/dataset/data_dictionary.csv', 'results/dataset/admin_code_dictionary.csv',
+    'results/dataset/numeric_summary.csv', 'results/dataset/missing_summary.csv',
+    'results/dataset/dataset_profile.json', 'results/dataset/data_preview.csv',
+    'results/preprocessing/preprocessing_summary.json', 'results/preprocessing/missing_values.csv',
+    'results/week-11/validation_metrics.csv', 'results/week-11/experiment.json',
+    'results/week-12/protocol.json', 'results/week-12/test/metrics.csv',
+    'results/week-12/test/error_groups.csv', 'results/week-12/test/calibration.csv',
+    'results/revisi-dosen/experiment.json', 'results/revisi-dosen/validation_metrics.csv',
+    'results/revisi-dosen/validation_threshold_metrics.csv',
+    'results/revisi-dosen/threshold_selection.json', 'requirements.txt',
+    'src/preprocess.py', 'src/profile_data.py', 'src/mining.py',
+    'src/week12.py', 'src/revision.py', 'src/revision_thresholds.py',
+})
+manifest = {
+    'pages': len(reader.pages), 'toc_pages': doc.front_pages,
+    'toc_entries': [{'level': level, 'title': title, 'page': number} for level,title,number,key in toc._entries],
+    'tables': table_index, 'figures': 6,
+    'scope': 'Stored Week 10-12 results and Week 13 revision; no new model training or test evaluation.',
+    'hash_method': 'SHA-256 of UTF-8 text with universal newline normalization',
+    'sources': {path: hashlib.sha256((ROOT/path).read_text(encoding='utf-8').encode('utf-8')).hexdigest()
+                for path in source_paths},
+}
+(DEST/'sumber-laporan.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False)+'\n', encoding='utf-8')
 print(f"PDF: {OUT}; pages={len(reader.pages)}")
