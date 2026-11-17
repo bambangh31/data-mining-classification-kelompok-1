@@ -18,13 +18,13 @@ Pada uji historis Week 12, NGBoost memperoleh AP 0,2068 dan F1 0,2606. Pada perc
 
 ## 1. Pendahuluan
 
-### Latar belakang
+### 1.1 Latar belakang
 
 Sasaran proyek adalah mengenali kunjungan pasien diabetes yang tercatat diikuti rawat inap ulang dalam kurang dari 30 hari. Unit observasi adalah kunjungan, bukan satu pasien. Proyek ini mempelajari klasifikasi readmission, bukan diagnosis diabetes dan bukan hubungan sebab akibat.
 
 Ketidakseimbangan target membuat akurasi tinggi dapat dicapai hanya dengan memilih kelas mayoritas. Di sisi lain, satu pasien dapat muncul beberapa kali sehingga pengacakan kunjungan tanpa memperhatikan pasien berisiko menempatkan riwayat pasien yang sama pada train dan test. Penelitian ini menempatkan pemisahan pasien dan pembacaan metrik positif sebagai dasar evaluasi.
 
-### Rumusan masalah
+### 1.2 Rumusan masalah
 
 RQ1: Bagaimana karakteristik dataset, makna kode administrasi, missing value, dan pengulangan pasien memengaruhi keputusan preprocessing dan pembagian data?
 
@@ -32,7 +32,7 @@ RQ2: Bagaimana perbandingan NGBoost dan Rotation Forest pada representasi dan sp
 
 RQ3: Apakah penambahan random oversampling pada NGBoost masih memperlihatkan keuntungan setelah ambang kedua model dipilih dengan aturan F1 maksimum yang sama pada validation?
 
-### Tujuan dan batasan
+### 1.3 Tujuan dan batasan
 
 Tujuan laporan adalah menyediakan alur yang dapat diperiksa dari sumber data sampai evaluasi, membandingkan dua konfigurasi klasifikasi, dan menjawab revisi dosen dengan bukti eksperimen. Pembahasan terbatas pada target biner <30, satu pembagian pasien, informasi saat keluar rumah sakit, serta data historis AS. Tidak dilakukan penerapan pada layanan rumah sakit atau pengujian efektivitas intervensi.
 
@@ -42,7 +42,7 @@ Revisi yang sudah dilaksanakan meliputi kamus kode yang lebih lengkap, percobaan
 
 Bagian BOD menghubungkan masalah pemantauan readmission dengan sasaran teknis klasifikasi. Calon pembaca hasil adalah pihak akademik yang mempelajari pemilahan risiko kunjungan. Pengelola layanan dapat menjadi pemangku kepentingan konseptual, tetapi laporan ini belum menetapkan kebijakan klinis, biaya kesalahan, atau target operasional rumah sakit.
 
-### Tujuan dan kriteria keberhasilan
+### 2.1 Tujuan dan kriteria keberhasilan
 
 Tabel 1. Tujuan dan kriteria keberhasilan
 
@@ -56,7 +56,7 @@ Tabel 1. Tujuan dan kriteria keberhasilan
 
 Kriteria keberhasilan dibatasi pada bukti akademik yang dapat diperiksa: tidak ada overlap pasien, proses dapat diulang, hasil dibedakan menurut set evaluasi, dan model nontrivial memiliki AP validation di atas baseline. Tidak ditetapkan target penurunan readmission, penghematan biaya, atau manfaat klinis karena data eksperimen belum mengukur hasil tersebut.
 
-### Situasi, risiko, dan penanganan
+### 2.2 Situasi, risiko, dan penanganan
 
 Tabel 2. Risiko dan keputusan penanganan
 
@@ -85,7 +85,7 @@ Tabel 3. Karakteristik dataset
 | Target asli | NO: 54.864; >30: 35.545; <30: 11.357 (11,160%). Target biner <30 = 1, lainnya = 0. |
 | Pengulangan | 30.248 kunjungan di luar kunjungan pertama pasien. Tidak ada duplikasi baris persis atau ID kunjungan. |
 
-### Contoh data aktual
+### 3.1 Contoh data aktual
 
 Tabel 4. Contoh aktual sebelum cleaning
 
@@ -102,7 +102,7 @@ Empat baris tersebut diambil dari data asli sebelum cleaning. ID pasien dan kunj
 
 Missing pada grafik dihitung dari ? atau kosong. Selain weight, missing medical_specialty dan payer_code cukup besar, tetapi keputusan drop tetap dihitung dari train. None pada tes laboratorium tidak dimasukkan sebagai missing. Persentase label positif setelah cohort dan per split dapat berbeda dari prevalensi data asli.
 
-### Arti kode meninggal dan kategori lain
+### 3.2 Arti kode meninggal dan kategori lain
 
 Tabel 5. Kode status meninggal
 
@@ -123,11 +123,11 @@ Gambar 2. Alur penelitian dan pemisahan evaluasi awal dari evaluasi revisi
 
 ![Alur penelitian](alur-penelitian.svg)
 
-### NGBoost
+### 4.1 NGBoost
 
 NGBoost membangun prediksi probabilistik melalui natural gradient boosting (Duan dkk., 2020). Implementasi tugas memakai NGBClassifier dengan distribusi Bernoulli untuk label 0/1 dan decision tree sebagai base learner. Probabilitas kelas 1 dipakai untuk ranking dan evaluasi; label prediksi diperoleh dengan menerapkan ambang keputusan. Model probabilistik tidak otomatis berarti probabilitasnya telah terkalibrasi pada data evaluasi.
 
-### Rotation Forest dan baseline
+### 4.2 Rotation Forest dan baseline
 
 Rotation Forest membentuk ensemble dengan rotasi fitur melalui PCA pada kelompok fitur (Rodriguez, Kuncheva dan Alonso, 2006). Dalam proyek ini, Rotation Forest menerima representasi SVD yang sama dengan NGBoost. Baseline DummyClassifier strategy prior menghasilkan probabilitas konstan sesuai prevalensi train dan memprediksi kelas mayoritas pada ambang 0,5. Baseline menguji apakah model memberi nilai tambah terhadap prediktor sederhana.
 
@@ -159,7 +159,7 @@ Tabel 7. Konfigurasi model awal
 
 AP adalah metrik ranking utama, didampingi precision, recall, F1, ROC-AUC, balanced accuracy dan confusion matrix. Brier score dan log loss lebih kecil lebih baik. AP berbeda dari integrasi trapezoid PR-AUC.
 
-### Aturan validasi masukan dan pencegahan kebocoran
+### 5.1 Aturan validasi masukan dan pencegahan kebocoran
 
 Tabel 8. Validasi masukan dan pencegahan kebocoran
 
@@ -196,7 +196,7 @@ Unit hitung metrik adalah kunjungan. Pemilihan ambang mengubah label prediksi da
 
 ## 7. Hasil Week 11 dan Week 12
 
-### Week 11 pada validation dengan ambang 0,5
+### 7.1 Week 11 pada validation dengan ambang 0,5
 
 Tabel 10. Hasil validation awal pada ambang 0,5
 
@@ -208,7 +208,7 @@ Tabel 10. Hasil validation awal pada ambang 0,5
 
 Baseline menghasilkan akurasi tinggi karena kelas 0 dominan. NGBoost memiliki AP tertinggi tetapi belum memprediksi positif pada ambang 0,5. Rotation Forest menangkap 34 dari 1.659 kasus positif. Akurasi dan threshold 0,5 saja belum cukup menilai model.
 
-### Week 12 pada set uji historis
+### 7.2 Week 12 pada set uji historis
 
 Model Week 11 dipertahankan. Ambang dipilih untuk memaksimalkan F1 pada validation, dengan ambang lebih tinggi saat seri; NGBoost dipilih berdasarkan AP validation. Protokol dan hash artefak dicatat sebelum set uji dibaca. Set uji berisi 14.978 kunjungan dari 10.566 pasien, dengan 1.731 kasus positif.
 
@@ -226,7 +226,7 @@ Hasil di atas adalah riwayat evaluasi sebelum percobaan revisi. Model revisi dil
 
 ![Gambar 3. Confusion matrix pada test awal dengan ambang dari validation](../../results/week-12/test/test_confusion_matrices.png)
 
-### Analisis kesalahan menurut riwayat rawat inap
+### 7.3 Analisis kesalahan menurut riwayat rawat inap
 
 Tabel 12. Recall test menurut riwayat rawat inap
 
@@ -283,13 +283,13 @@ Revisi dosen sudah ditindaklanjuti melalui kamus kode yang lebih rinci, percobaa
 
 Pada uji historis Week 12, NGBoost mempunyai AP dan F1 lebih tinggi daripada Rotation Forest pada konfigurasi yang dicoba. Pada validasi revisi, keuntungan recall ROS pada ambang 0,5 hampir hilang setelah ambang kedua model dipilih dengan aturan F1 yang sama. Karena itu, laporan tidak menyimpulkan bahwa oversampling selalu meningkatkan performa atau bahwa data seimbang menjamin model lebih baik.
 
-### Keterbatasan dan tindak lanjut
+### 10.1 Keterbatasan dan tindak lanjut
 
 Hasil berasal dari satu split berbasis pasien, bukan temporal atau lintas rumah sakit. Kunjungan berulang dalam pasien yang sama membuat observasi tidak sepenuhnya independen. Data historis AS belum mewakili rumah sakit Indonesia; variabel demografi juga memerlukan pemeriksaan bias. Hospice/transfer tetap dipertahankan dan cohort hanya mengecualikan kunjungan berstatus meninggal.
 
 CV berbasis pasien, tuning hiperparameter, ablasi SVD, kalibrasi probabilitas, validasi eksternal dan signifikansi statistik belum dilakukan. Test Week 12 sudah pernah dilihat pada eksperimen terdahulu, sehingga tidak dipresentasikan sebagai holdout baru untuk model revisi. Jika eksperimen dilanjutkan, preprocessing dan ROS harus di-fit ulang pada training fold saja, dengan pemilihan ambang di dalam proses pelatihan.
 
-### Jawaban rumusan masalah
+### 10.2 Jawaban rumusan masalah
 
 Tabel 15. Jawaban rumusan masalah
 
@@ -313,7 +313,7 @@ Tabel 16. Pembagian tanggung jawab kelompok
 
 Pembahasan, kesimpulan, referensi, konsistensi angka serta peninjauan format dikerjakan bersama sesuai rencana. Laporan ini menggunakan hasil tersimpan dan tidak menambahkan eksperimen baru hanya untuk memperpanjang dokumen.
 
-### Pemenuhan ketentuan Week 10 sampai 13
+### 11.1 Pemenuhan ketentuan Week 10 sampai 13
 
 Tabel 17. Status keluaran tugas
 
@@ -331,7 +331,7 @@ PDF pengumpulan Week 10-13 berada pada docs/laporan/ sebagai empat file terpisah
 
 ## 12. Pengujian dan reproduksi
 
-### Bukti pemeriksaan
+### 12.1 Bukti pemeriksaan
 
 Suite lokal memuat 16 tes perilaku preprocessing, evaluasi, model kecil, dan revisi. Pemeriksaan meliputi pasien terpisah, preservasi kategori None, penolakan ID konflik, transformasi yang tidak belajar dari validasi, metrik biner, pemilihan threshold ketika skor seri, serta oversampling train saja. Tes sintetis tidak menggantikan eksekusi dataset penuh atau membuktikan kesimpulan ilmiah.
 
@@ -345,7 +345,7 @@ Tabel 18. Bukti pemeriksaan
 | Pemilihan ambang | threshold_selection.json menyimpan aturan dan hash prediksi/target sumber. |
 | Konsistensi laporan | Tabel dibaca dari sumber CSV; model test lama dan model revisi diberi label terpisah. |
 
-### Berkas implementasi dan keluaran
+### 12.2 Berkas implementasi dan keluaran
 
 Tabel 19. Berkas implementasi
 
@@ -358,7 +358,7 @@ Tabel 19. Berkas implementasi
 | src/revision.py | Perbandingan NGBoost tanpa/dengan ROS pada validation. |
 | src/revision_thresholds.py | Verifikasi prediksi dan pemilihan ambang revisi tanpa training ulang. |
 
-### Cara menjalankan kembali
+### 12.3 Cara menjalankan kembali
 
 Kode, dataset asli, laporan agregat dan generator PDF disimpan pada repository kelompok. Model joblib serta matriks hasil preprocessing tetap lokal dan dapat dibentuk ulang. Versi library training terkunci pada requirements.txt; dependensi PDF dipisahkan dari training.
 

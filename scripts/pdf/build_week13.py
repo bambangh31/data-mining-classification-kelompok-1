@@ -2,8 +2,8 @@
 from pathlib import Path
 import hashlib
 from reportlab.platypus import KeepTogether
-from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT
-from reportlab.platypus.tableofcontents import TableOfContents
+from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
+from reportlab.platypus.tableofcontents import TableOfContents, drawPageNumbers
 from reportlab.graphics.shapes import Drawing, Rect, String, Line, Polygon
 from reportlab.graphics import renderSVG
 
@@ -54,12 +54,42 @@ def table(rows, widths, small=False):
 
 class ReportDoc(SimpleDocTemplate):
     def afterFlowable(self, flowable):
-        if isinstance(flowable, Paragraph) and flowable.style.name == 'TitleID':
+        if isinstance(flowable, Paragraph) and flowable.style.name in ('TitleID', 'HeadingID'):
             title = flowable.getPlainText()
-            if title != 'Daftar isi':
-                key = 'chapter-' + hashlib.sha256(title.encode()).hexdigest()[:12]
-                self.canv.bookmarkPage(key)
-                self.notify('TOCEntry', (0, title, self.page - 1, key))
+            key = 'section-' + hashlib.sha256(title.encode()).hexdigest()[:12]
+            self.canv.bookmarkPage(key)
+            level = 0 if flowable.style.name == 'TitleID' else 1
+            self.notify('TOCEntry', (level, title, self.page - 1, key))
+
+
+class ReportTOC(TableOfContents):
+    """Compact hierarchy with continuous dot leaders in each entry's font."""
+
+    def wrap(self, availWidth, availHeight):
+        entries = self._lastEntries or [(0, 'Daftar isi', 0, None)]
+        rows = []
+        for index, (level, text, number, key) in enumerate(entries):
+            style = self.getLevelStyle(level)
+            callback = f'reportTOCEntry{index}'
+
+            def draw_end(canvas, kind, label, style=style, number=number, key=key):
+                drawPageNumbers(canvas, style, [(number, key)], availWidth, availHeight, dot='.')
+
+            self.canv.setNamedCB(callback, draw_end)
+            text = escape(text)
+            if key:
+                text = f'<a href="#{key}">{text}</a>'
+            if style.spaceBefore:
+                rows.append([Spacer(1, style.spaceBefore)])
+            rows.append([Paragraph(f'{text}<onDraw name="{callback}"/>', style)])
+        self._table = Table(rows, colWidths=[availWidth], style=TableStyle([
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ]))
+        self.width, self.height = self._table.wrapOn(self.canv, availWidth, availHeight)
+        return self.width, self.height
 
 
 def report_footer(canvas, doc):
@@ -109,11 +139,16 @@ def count(value):
     return f"{int(value):,}".replace(",", ".")
 
 
-toc = TableOfContents()
-toc.dotsMinLevel = 0
-toc.levelStyles = [ParagraphStyle('ReportTOC', fontName='TimesBody', fontSize=12, leading=19,
-                                  leftIndent=0, firstLineIndent=0, spaceBefore=4)]
-story = [p('Daftar isi', 'TitleID'), toc]
+toc = ReportTOC()
+toc.levelStyles = [
+    ParagraphStyle('ReportTOCChapter', fontName='TimesBody-Bold', fontSize=11, leading=13,
+                   leftIndent=0, firstLineIndent=0, spaceBefore=4),
+    ParagraphStyle('ReportTOCSection', fontName='TimesBody', fontSize=11, leading=13,
+                   leftIndent=6*mm, firstLineIndent=0, spaceBefore=0),
+]
+styles.add(ParagraphStyle('TOCTitle', parent=styles['TitleID'], alignment=TA_CENTER,
+                          fontSize=14, leading=18, spaceAfter=14))
+story = [p('DAFTAR ISI', 'TOCTitle'), toc]
 markdown = ["# Laporan pertama Week 13", "", "Klasifikasi rawat inap ulang pasien diabetes", "",
     "Kelompok 1 | Data Mining | Pembaruan 17 November 2026", "",
     "| Anggota | NRP |", "|---|---|",
@@ -122,10 +157,12 @@ markdown = ["# Laporan pertama Week 13", "", "Klasifikasi rawat inap ulang pasie
 
 
 chapter_index = 0
+subsection_index = 0
 
 
 def section(title):
-    global chapter_index
+    global chapter_index, subsection_index
+    subsection_index = 0
     original = title
     if not title.startswith('Ringkasan'):
         chapter_index += 1
@@ -144,6 +181,9 @@ def paragraph(text, small=False):
 
 
 def heading(text):
+    global subsection_index
+    subsection_index += 1
+    text = f'{chapter_index}.{subsection_index} {text}'
     story.append(p(text, "HeadingID"))
     markdown.extend(["### " + text, ""])
 
