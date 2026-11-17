@@ -50,7 +50,14 @@ sedangkan Rotation Forest memperoleh AP 0,1573 dan F1 0,2265. Analisis
 kesalahan dipisahkan menurut rentang usia dan jumlah rawat inap sebelumnya.
 Lihat [Week 12](../week-12/README.md).
 
-## Menunggu pengerjaan
+## Week 13 sampai 15 dan tindak lanjut
+
+Artikel bahasa Indonesia IMRAD untuk Week 15 sudah disiapkan lebih awal dalam
+PDF dan Markdown di [folder artikel](../artikel/README.md). Week 14 belum
+dikerjakan; percobaan tambahan mengikuti permintaan dosen pada tahap tersebut.
+Eksperimen oversampling yang tersedia merupakan revisi laporan Week 13.
+Artikel memisahkan hasil test tahap awal dari hasil validation
+revisi, dan tabel numeriknya dicocokkan otomatis terhadap sumber.
 
 Laporan pertama Week 13 sudah tersedia dalam PDF tersendiri dan sumber Markdown
 di [Week 13](../week-13/README.md). PDF Week 10 juga diperbarui dengan arti,
@@ -60,10 +67,12 @@ F1 validation sesudah pemilihan ambang adalah 0,2540 (NGBoost) dan 0,2534 (ROS).
 Semua 16 tes lulus lokal; ini tidak menyatakan CI pada commit baru sudah lulus.
 
 - Review target/cohort dan penyesuaian format BOD jika dosen memberi template.
-- Artikel IMRAD Week 15 dan materi presentasi Week 16 dari hasil nyata.
+- Penyesuaian template artikel jika dosen memberikan format khusus.
+- Materi presentasi Week 16 dari hasil nyata.
 
 Undangan collaborator dilakukan setelah setup sesuai permintaan pengguna.
-Week 10–13 memiliki dokumen terpisah dan bukti hasil. Pengumpulan ke LMS dan
+Week 10–13 memiliki laporan terpisah, Week 14 belum dikerjakan, dan artikel
+untuk Week 15 sudah disiapkan lebih awal. Pengumpulan ke LMS dan
 persetujuan dosen belum diverifikasi.
 
 ## Format pembaruan

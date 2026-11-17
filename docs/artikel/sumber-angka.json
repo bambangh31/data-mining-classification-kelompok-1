@@ -1,0 +1,26 @@
+{
+  "data_as_of": "2026-11-14",
+  "experiment_base_commit": "2c2e59414a1e8496e36280821d790b02c2402f8b",
+  "table_checks": "tables 1 and 3-7 match stored metadata/CSV after four-decimal formatting",
+  "hash_policy": "UTF-8 text with universal newlines normalized to LF; PNG files use raw bytes",
+  "test_evaluated_during_article_creation": false,
+  "sha256": {
+    "docs/artikel/artikel-imrad.md": "2464a450a7a90cbe7d4aa64bc931bdd4974031c36c4dcd207b3fb24798a57d01",
+    "src/mining.py": "66805a354abec93801c980a0f1c41939a351313442f5a9623415b14f1a09360f",
+    "src/preprocess.py": "a17859b57a325cb84af2feb4103dd3f012da87c9248e89eb08d6330c9ee66ed3",
+    "src/revision.py": "7613bbc7575238527fda4156a00a057a5813dd4feaa54d4c07999c5a161c669a",
+    "src/revision_thresholds.py": "04ae0303425fb1236c60348622977207a135959ce1a40ddb9bc9407a721d58e9",
+    "requirements.txt": "5563731f001b65267d47c4b676a56e4f13a10c41e9df204e586d7a11035c5122",
+    "results/preprocessing/preprocessing_summary.json": "47067fb08fa4146a06b186e154da2f5c355465140f7b93b7c9d1c6b57103895f",
+    "results/week-12/protocol.json": "2c9c67c553abab6a0eaf88c59dc741ed7aaad770b5c7197a55245e5266d41dbe",
+    "results/week-12/test/error_groups.csv": "35a6333555a7fff61f4a2e510b8a5cbd29657617cb4d6de6c346cba1b146f303",
+    "results/revisi-dosen/experiment.json": "4bc64f6fd169be21953516fb0ffd6688c24b2e149016912d59e73e175b490d29",
+    "results/revisi-dosen/threshold_selection.json": "a4b848b8cd469c7e04cb34311fb3c651f50912e39144fa981f0b74b4fe3b74c9",
+    "results/revisi-dosen/class_balance.png": "492ee970cb9f75740817a3396ab2d35b7d8383a18f9cb27714c377f86b630bca",
+    "results/revisi-dosen/validation_threshold_curves.png": "a69e19b1def9cd9eecad800f1940921c403e375f9c8e2a40103c49c05d688d73",
+    "results/week-11/validation_metrics.csv": "d184ec278495c7376abb7a8dc06152e7120a3366983db0f5f262e34381dc31be",
+    "results/week-12/test/metrics.csv": "f006fd5f28d7808670579e31f3fa58946cc07767ccac15844a583cdba52d0c11",
+    "results/revisi-dosen/validation_metrics.csv": "09668ae0d5d3a357703260c17e5e678178d318b7bc05e4a0d2c88d25aaeecd97",
+    "results/revisi-dosen/validation_threshold_metrics.csv": "7b20767f8de3ba79f1f085fd030cdbfe59d034cf374ab6fe1aee9b07f6543711"
+  }
+}
