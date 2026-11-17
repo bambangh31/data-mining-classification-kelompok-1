@@ -2,7 +2,9 @@
 
 Empat PDF final dikumpulkan dalam folder ini agar mudah ditemukan dan diunggah.
 Masing-masing minggu tetap berupa file terpisah; isi PDF tidak diubah saat
-penataan folder pada 17 November 2026.
+penataan folder pada 17 November 2026. Setelah penataan, laporan Week 13
+dikembangkan menjadi versi lengkap 20 halaman dengan daftar isi, rumusan
+masalah, BOD, diagram alur, rincian implementasi dan pembahasan hasil.
 
 | Minggu | Isi | Berkas |
 |---|---|---|
