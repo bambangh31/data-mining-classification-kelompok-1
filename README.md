@@ -76,15 +76,16 @@ dan [hasil week 12](docs/week-12/README.md).
 
 ## Cara Menjalankan
 
-Dokumen PDF: [Week 10](docs/week-10/week-10-data-mining-kelompok-1.pdf),
-[Week 11](docs/week-11/week-11-data-mining-kelompok-1.pdf), dan
-[Week 12](docs/week-12/week-12-data-mining-kelompok-1.pdf).
-Laporan pertama: [Week 13](docs/week-13/week-13-data-mining-kelompok-1.pdf).
+Dokumen PDF: [Week 10](docs/laporan/week-10-data-mining-kelompok-1.pdf),
+[Week 11](docs/laporan/week-11-data-mining-kelompok-1.pdf), dan
+[Week 12](docs/laporan/week-12-data-mining-kelompok-1.pdf).
+Laporan pertama: [Week 13](docs/laporan/week-13-data-mining-kelompok-1.pdf).
 
-Keempat laporan **dipisah per minggu**. Week 10 mencakup dataset, karakteristik,
+Keempat PDF final berada dalam **satu folder `docs/laporan/`**, dengan file
+**terpisah per minggu**. Week 10 mencakup dataset, karakteristik,
 BOD dan algoritma; Week 11 implementasi dan evaluasi awal; Week 12 evaluasi uji
 historis; Week 13 menyatukan hasil serta revisi dosen. Lihat
-[indeks pengumpulan Week 10-13](docs/week-13/README.md).
+[indeks pengumpulan Week 10-13](docs/laporan/README.md).
 Week 14 **belum dikerjakan**; percobaan tambahan mengikuti permintaan dosen pada tahap tersebut.
 Eksperimen oversampling yang tersedia merupakan revisi laporan Week 13.
 [Artikel bahasa Indonesia dengan IMRAD untuk Week 15](docs/artikel/README.md)

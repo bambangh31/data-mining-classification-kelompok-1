@@ -16,7 +16,7 @@ python scripts/pdf/build_week13.py
 ```
 
 Keluaran ada di `output/pdf/` (lokal, diabaikan Git). Salinan PDF final yang
-dibagikan lewat repo ada di `docs/week-10/`, `docs/week-11/`, `docs/week-12/`, dan `docs/week-13/`. Perbarui
+dibagikan lewat repo dikumpulkan di `docs/laporan/`, sebagai empat file Week 10-13 terpisah. Perbarui
 salinannya setelah merevisi dan memeriksa hasil generator. Logo cover berada
 di `docs/assets/logo-ukwms.png`.
 

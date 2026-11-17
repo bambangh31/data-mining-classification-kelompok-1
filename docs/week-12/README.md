@@ -18,7 +18,7 @@ tersebut menggambarkan trade-off pada ambang yang dipilih di validasi.
 Set ini sudah digunakan untuk penilaian. Jika konfigurasi kelak dipilih dari
 temuan uji ini, penilaian independen membutuhkan set uji lain.
 
-- [Laporan Week 12 dalam PDF](week-12-data-mining-kelompok-1.pdf)
+- [Laporan Week 12 dalam PDF](../laporan/week-12-data-mining-kelompok-1.pdf)
 - [Protokol dan ambang lengkap](../../results/week-12/protocol.json)
 - [Laporan, analisis kesalahan, dan grafik](../../results/week-12/test/report.md)
 - [Tabel metrik uji](../../results/week-12/test/metrics.csv)

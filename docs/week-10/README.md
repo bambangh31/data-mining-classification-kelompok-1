@@ -1,6 +1,6 @@
 # Week 10 — dataset, karakteristik, BOD dan algoritma
 
-Dokumen siap baca: [PDF week 10](week-10-data-mining-kelompok-1.pdf).
+Dokumen siap baca: [PDF week 10](../laporan/week-10-data-mining-kelompok-1.pdf).
 
 Tanggal kelas: 27 Oktober 2026. Dokumen dan pemeriksaan aktual disiapkan pada
 3 November 2026; tanggal kelas tidak dianggap sebagai bukti pekerjaan selesai.
