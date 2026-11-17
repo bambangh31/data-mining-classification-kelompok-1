@@ -3,8 +3,10 @@
 Empat PDF final dikumpulkan dalam folder ini agar mudah ditemukan dan diunggah.
 Masing-masing minggu tetap berupa file terpisah; isi PDF tidak diubah saat
 penataan folder pada 17 November 2026. Setelah penataan, laporan Week 13
-dikembangkan menjadi versi lengkap 20 halaman dengan daftar isi, rumusan
-masalah, BOD, diagram alur, rincian implementasi dan pembahasan hasil.
+dikembangkan menjadi versi rinci 53 halaman dengan dua halaman daftar isi,
+kamus seluruh 50 kolom, mapping administrasi, 56 tabel dan 6 gambar.
+Pembahasan mencakup rumusan masalah, BOD, preprocessing, mekanisme model,
+evaluasi, oversampling, analisis kesalahan dan reproduksi dari hasil tersimpan.
 
 | Minggu | Isi | Berkas |
 |---|---|---|

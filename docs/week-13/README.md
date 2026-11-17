@@ -2,13 +2,16 @@
 
 Laporan pertama sudah disusun dari hasil nyata Week 10-12 serta revisi dosen.
 Pembaruan: 17 November 2026. Dokumen ini terpisah dari laporan tiap minggu.
-Versi lengkap terdiri atas 20 halaman: cover, daftar isi otomatis, ringkasan,
-14 bab, 20 tabel bernomor, dan 6 gambar termasuk diagram alur penelitian.
+Versi rinci terdiri atas 53 halaman: cover, dua halaman daftar isi otomatis,
+ringkasan, 14 bab, 56 tabel bernomor, dan 6 gambar termasuk diagram alur penelitian.
+Daftar isi memuat 83 entri bab/subbab dengan 166 tautan internal.
 Paragraf isi menggunakan Times New Roman 12 dengan rata kanan-kiri.
 
 - [PDF laporan pertama](../laporan/week-13-data-mining-kelompok-1.pdf)
 - [Sumber isi yang dapat diedit](laporan-pertama.md)
 - [Generator PDF dan Markdown](../../scripts/pdf/build_week13.py)
+- [Uraian rinci untuk generator](../../scripts/pdf/week13_details.py)
+- [Manifest angka sumber dan struktur laporan](sumber-laporan.json)
 
 Cakupan: pendahuluan dan rumusan masalah, tujuan/BOD, risiko dan kriteria
 keberhasilan, dataset dan kode kategori, metode, preprocessing, split pasien,
@@ -17,6 +20,15 @@ Week 12, percobaan oversampling dan pemilihan ambang pada validation, pembahasan
 keterbatasan, pembagian tugas, bukti pengujian, kesimpulan serta reproduksi.
 Struktur laporan dikembangkan mengikuti contoh format yang diberikan pengguna;
 isi dan angka tetap berasal dari proyek Data Mining ini.
+
+Versi rinci memuat seluruh 50 kolom, semua kode dari mapping administrasi,
+statistik numerik dan missing, urutan cleaning, penggunaan seluruh kumpulan
+train dan minibatch, imputasi/encoding/SVD, mekanisme algoritma, protokol
+pemilihan ambang, confusion matrix, hasil menurut usia/riwayat rawat inap,
+reliabilitas probabilitas, waktu run revisi, validitas dan reproduksi.
+Penambahan uraian menggunakan hasil tersimpan; tidak melakukan training atau
+evaluasi test baru. Manifest mencatat SHA-256 teks sumber dengan normalisasi
+akhir baris serta jumlah halaman, tabel dan entri daftar isi.
 
 Setelah pemilihan ambang F1 maksimum, NGBoost biasa memperoleh F1 0,2540
 dan NGBoost + ROS 0,2534 pada validation. Oversampling belum menunjukkan
