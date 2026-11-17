@@ -24,6 +24,11 @@ Week 10 memuat lampiran kode administrasi lengkap. Generator Week 13 juga
 menulis `docs/week-13/laporan-pertama.md` dari konten yang sama dengan PDF.
 Jika perlu mengubah isi laporan, edit generator agar PDF dan Markdown konsisten.
 
+Week 13 memakai tata letak khusus laporan lengkap: Times New Roman,
+paragraf justify, tabel bernomor, cover pengampu dan kelompok, serta daftar
+isi otomatis melalui multi-pass. Diagram vektor ditulis ke
+`docs/week-13/alur-penelitian.svg`; angka tetap dibaca dari artefak eksperimen.
+
 Artikel untuk Week 15 memakai sumber Markdown:
 
 ```powershell
